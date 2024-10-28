@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Run LLM4AD &#8212; LLM4AD 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/run_llm4ad';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../dev/base/base_index.html" />
+    <link rel="prev" title="LLM free run" href="llm_free_run.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">LLM4AD 0.0.1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome to LLM4AD Docs!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm_free_run.html">LLM free run</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Run LLM4AD</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dev/base/code.html">base.code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/base/evaluate.html">base.evaluate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/base/modify_code.html">base.modify_code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/base/sample.html">base.sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/base_tutorial/tut_code.html">Function, Program, Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/base_tutorial/tut_modify_code.html">ModifyCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../method/eoh.html">EoH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../method/funsearch.html">FunSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../method/hillclimb.html">HillClimb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../method/randsample.html">RandSample</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vllm-project/vllm" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vllm-project/vllm/edit/main/docs/source/getting_started/run_llm4ad.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/getting_started/run_llm4ad.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Run LLM4AD</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-user-defined-sampler-class">Initialization of the user-defined sampler class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-draw-sample-function">Implementation of the draw_sample function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-template-program">2. Prepare a template program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluator">3. Prepare an <cite>Evaluator</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-evaluator-class">Initialization of the Evaluator class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-evaluate-program-function">Implementation of the evaluate_program function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specify-a-profiler-and-a-logger-if-necessary">4. Specify a profiler and a logger (if necessary)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-parallel-parameters-and-run">5. Set parallel parameters and run.</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="run-llm4ad">
+<h1>Run LLM4AD<a class="headerlink" href="#run-llm4ad" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial will demonstrate a basic LLM4AD pipeline to solve an automated algorithm design task.</p>
+</div>
+<section id="prepare-a-sampler">
+<h2>1. Prepare a <cite>Sampler</cite><a class="headerlink" href="#prepare-a-sampler" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>Sampler</cite> class (an abstract class) defines how to access the LLM.
+You can either deploy an LLM locally on your own device/server or use an LLM API.
+The user should create a new child class of the <cite>Sampler</cite> class (extend <cite>Sampler</cite>) and implement (override) the <cite>draw_sample</cite> function.</p>
+</div>
+<section id="initialization-of-the-user-defined-sampler-class">
+<h3>Initialization of the user-defined sampler class<a class="headerlink" href="#initialization-of-the-user-defined-sampler-class" title="Link to this heading">#</a></h3>
+<p>There is a keyword argument <cite>auto_trim</cite> in the <cite>Sampler</cite> class, with a default value of <cite>True</cite>. This means that regardless of whether the user chooses a code completion model (such as StarCoder, CodeLlama-Python, etc.) or a chat model (GPT series, Llama series, etc.), we can automatically identify the “useful part” without descriptions and truncated code.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Therefore, unless there is a special issue, please <strong>always leave ‘auto_trim’ default</strong>.</p>
+</div>
+</section>
+<section id="implementation-of-the-draw-sample-function">
+<h3>Implementation of the draw_sample function<a class="headerlink" href="#implementation-of-the-draw-sample-function" title="Link to this heading">#</a></h3>
+<p>The <cite>draw_sample</cite> function decides how to obtain the generated content from the LLM and return the <cite>str</cite>-typed content</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>feel free to return the answer generated by LLM, which may incorporate some useless descriptions, as they will be trimmed automatically by our trimmer).</p>
+</div>
+<p>Here, we show a brief example of using LLM API.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.tools.llm.llm_api_https</span> <span class="kn">import</span> <span class="n">HttpsApi</span>
+
+<span class="c1"># note that the &#39;host&#39; has no &#39;https&#39;</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">HttpsApi</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;api.bltcy.ai&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Your API key&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gpt-3.5-turbo&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also implement your own sampler.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">llm4ad</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">http.client</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">MySampler</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Sampler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">draw_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">api_endpoint</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+                <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+                    <span class="s1">&#39;max_tokens&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span>
+                    <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="s1">&#39;gpt-3.5-turbo&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;messages&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+                <span class="p">})</span>
+                <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Apifox/1.0.0 (https://apifox.com)&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+                <span class="p">}</span>
+                <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;/v1/chat/completions&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">response</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">continue</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="prepare-a-template-program">
+<h2>2. Prepare a template program<a class="headerlink" href="#prepare-a-template-program" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The template program is the initial point of algorithm optimization. Please carefully design a template program and spend enough time on it!</p>
+</div>
+<p>The following information is suggested to be considered and addressed in your template program:</p>
+<ul class="simple">
+<li><p>Import all packages that will be used or those that are potentially used in future optimization processes.</p></li>
+<li><p>You can also define global variables and classes that may be useful in your template program (if necessary).</p></li>
+<li><p>An intuitive function name.</p></li>
+<li><p>The type of each argument (labeled by type-hint).</p></li>
+<li><p>The return value of the function.</p></li>
+<li><p>A brief yet detailed docstring about each argument and the return value.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please note that the template program should be executable for all methods and should be valid/feasible/legal for methods except EoH.</p>
+</div>
+<p>Assuming that we are going to solve the Online Bin Packing problem, an example template program is shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">import numpy as np</span>
+
+<span class="s1">def priority(item: float, bins: np.ndarray) -&gt; np.ndarray:</span>
+<span class="s1">    &quot;&quot;&quot;Returns priority with which we want to add item to each bin.</span>
+<span class="s1">    Args:</span>
+<span class="s1">        item: Size of item to be added to the bin.</span>
+<span class="s1">        bins: Array of capacities for each bin.</span>
+<span class="s1">    Return:</span>
+<span class="s1">        Array of same size as bins with priority score of each bin.</span>
+<span class="s1">    &quot;&quot;&quot;</span>
+<span class="s1">    return bins - item</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="prepare-an-evaluator">
+<h2>3. Prepare an <cite>Evaluator</cite><a class="headerlink" href="#prepare-an-evaluator" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>Evaluator</cite> class determines how to assess the score of a given algorithm under specific settings and tasks, which is typically task-dependent. Therefore, we may design a new <cite>Evaluator</cite> for a specified problem. The Evaluator class (an abstract class) is a user interface. We should define a child class of <cite>Evaluator</cite> (which extends the <cite>Evaluator</cite> class).</p>
+</div>
+<section id="initialization-of-the-evaluator-class">
+<h3>Initialization of the Evaluator class<a class="headerlink" href="#initialization-of-the-evaluator-class" title="Link to this heading">#</a></h3>
+<p>By passing the respective argument to the Evaluator, the user can specify whether to use numba acceleration, protected division, or timeout seconds for code execution. Details about all arguments can be found in the base_package/evaluate section of this doc.</p>
+</section>
+<section id="implementation-of-the-evaluate-program-function">
+<h3>Implementation of the evaluate_program function<a class="headerlink" href="#implementation-of-the-evaluate-program-function" title="Link to this heading">#</a></h3>
+<p>The user should override the <cite>evaluate_program</cite> function in the Evaluator class (where the <cite>evaluate_program</cite> function remains unimplemented). The evaluate_program function evaluates the algorithm and gives a score. If you think the algorithm is infeasible/invalid/illegal, the user should return <cite>None</cite>. Otherwise, an int/float value or a “comparable” value (which may implement <cite>&gt;</cite> operator between them) is desired.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you think the algorithm to be evaluated is infeasible/invalid/illegal, the user should return <cite>None</cite>. Otherwise, an int/float value or a “comparable” value (which may implement <cite>&gt;</cite> operator between them) is desired.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Here you don’t have to concern the evaluation time, as we will terminate the evaluation automatically in the backend if you have set <cite>timeout_second</cite> parameter.</p>
+</div>
+<p>The first argument of the function is a <cite>program_str</cite>, which is a <cite>str</cite> type of the algorithm to be evaluated. If you set the <cite>use_numba_accelerate</cite> or similar settings to <cite>True</cite> in the initialization, you will obtain a <cite>str</cite> typed function that has been modified. This <cite>str</cite> is provided to let you:</p>
+<ul class="simple">
+<li><p>Compile and execute the code with your own requirements.</p></li>
+<li><p>Consider the length or other features of the code.</p></li>
+<li><p>Other usages such as calculating the “novelty” of the code or checking if the code has been evaluated before.</p></li>
+</ul>
+<p>The second argument of the function is a <cite>callable_func</cite>, which is an executable object. You can simply call (invoke) it by passing arguments to <cite>callable_func</cite>, such as <cite>callable_function(arg0, arg1)</cite>.</p>
+<p>Feel free to use the platform-provided evaluator for the Online Bin Packing problem.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">llm4ad</span>
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">llm4ad</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">online_bin_packing</span><span class="o">.</span><span class="n">OBPEvaluator</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="specify-a-profiler-and-a-logger-if-necessary">
+<h2>4. Specify a profiler and a logger (if necessary)<a class="headerlink" href="#specify-a-profiler-and-a-logger-if-necessary" title="Link to this heading">#</a></h2>
+<p>The profiler and logger will log your experiment locally/online for the convenience of monitoring, comparing, and summarizing your experiments.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note the type of the profiler may depend on the method you use. Assuming that we are using EoH.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.method.eoh.profiler</span> <span class="kn">import</span> <span class="n">EoHWandbProfiler</span>
+
+<span class="n">profiler</span> <span class="o">=</span> <span class="n">EoHWandbProfiler</span><span class="p">(</span><span class="n">wandb_project_name</span><span class="o">=</span><span class="s1">&#39;obp&#39;</span><span class="p">,</span>
+                            <span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;./logs/eoh_obp&#39;</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;eoh_run1&#39;</span><span class="p">,</span>
+                            <span class="n">group</span><span class="o">=</span><span class="s1">&#39;eoh&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="set-parallel-parameters-and-run">
+<h2>5. Set parallel parameters and run.<a class="headerlink" href="#set-parallel-parameters-and-run" title="Link to this heading">#</a></h2>
+<p>Pass above argument to EoH and run.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <cite>num_samplers</cite> refers to the number of threads in that may access to the LLM simultaneously. The <cite>num_evaluators</cite> refers to the size of process execute pool, indicating the maximum processes used during evaluation (we may evaluate multiple algorithms in the same time).</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>We use multi-threading for sampler, and multi-processing for evaluator. This means that we are using multi-core CPU during evaluation. Please kindly set these parameters to ensure safety.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.method.eoh</span> <span class="kn">import</span> <span class="n">EoH</span>
+
+<span class="n">eoh</span> <span class="o">=</span> <span class="n">EoH</span><span class="p">(</span>
+    <span class="n">template_program</span><span class="o">=</span><span class="n">template</span><span class="p">,</span>
+    <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
+    <span class="n">profiler</span><span class="o">=</span><span class="n">profiler</span><span class="p">,</span>
+    <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+    <span class="n">max_sample_nums</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">num_samplers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">num_evaluators</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+<span class="n">eoh</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="llm_free_run.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">LLM free run</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../dev/base/base_index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-user-defined-sampler-class">Initialization of the user-defined sampler class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-draw-sample-function">Implementation of the draw_sample function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-template-program">2. Prepare a template program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluator">3. Prepare an <cite>Evaluator</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-evaluator-class">Initialization of the Evaluator class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-evaluate-program-function">Implementation of the evaluate_program function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specify-a-profiler-and-a-logger-if-necessary">4. Specify a profiler and a logger (if necessary)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-parallel-parameters-and-run">5. Set parallel parameters and run.</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By LLM4AD Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, LLM4AD Team.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
