@@ -31,13 +31,13 @@ Locally build the package
 .. code-block:: console
 
     $ git clone https://github.com/Optima-CityU/LLM4AD
-    $ cd py-alevo
+    $ cd llm4ad
     $ pip install -e .
 
 PyPI installation
 ~~~~~~~~~~~~~~~~~
 .. code-block:: console
 
-    $ pip install alevo
+    $ pip install llm4ad
 
 

@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="base.code" href="code.html" />
-    <link rel="prev" title="GUI" href="../../getting_started/gui.html" />
+    <link rel="prev" title="Platform structure" href="../platform_structure.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -132,8 +132,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/llm4ad-logo.png" class="logo__image only-light" alt="LLM4AD 0.0.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/llm4ad-logo.png" class="logo__image only-dark" alt="LLM4AD 0.0.1 documentation - Home"/>`);</script>
   
-    <p class="title logo__title">LLM4AD 0.0.1 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -161,10 +167,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/examples.html">Run examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/online_demo.html">Online demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/gui.html">GUI</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../platform_structure.html">Platform structure</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Base package introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="code.html">base.code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluate.html">base.evaluate</a></li>
@@ -179,8 +187,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../platform_structure.html">Platform structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../run_new_task.html">Run your problem and LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../run_new_task.html">Run your algorithm design task</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Method</span></p>
 <ul class="nav bd-sidenav">
@@ -188,6 +195,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../method/funsearch.html">FunSearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../method/hillclimb.html">HillClimb</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../method/randsample.html">RandSample</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Task</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../task/machine_learning/index.html">Machine learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../task/machine_learning/acrobot.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Acrobot</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/machine_learning/car_pole.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Cart Pole</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/machine_learning/mountain_car.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Mountain Car</strong></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../task/optimization/index.html">Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../task/optimization/cvrp_construct.html"><strong>Constructive Heuristics</strong> for Capacitated Vehicle Routing Problem (CVRP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/optimization/ovrp_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/optimization/tsp_construct.html"><strong>Constructive Heuristics</strong> for <strong>Traveling Salesman Problem (TSP)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/optimization/vrptw_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../task/science_discovery/index.html">Science discovery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../task/science_discovery/bacteria_grow.html"><strong>Biology Knowledge Discovery</strong> for <strong>Bacteria Growth</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/science_discovery/ordinary_differential_equation.html"><strong>Function Discovery</strong> for <strong>Oridinary Differential Equation</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/science_discovery/oscillator1.html"><strong>Math Knowledge Discovery</strong> for <strong>Oscillator1</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/science_discovery/oscillator2.html"><strong>Math Knowledge Discovery</strong> for <strong>Oscillator2</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../task/science_discovery/stress_strain.html"><strong>Physics Knowledge Discovery</strong> for <strong>Stress &amp; Strain</strong></a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -409,12 +440,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../getting_started/gui.html"
+       href="../platform_structure.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">GUI</p>
+        <p class="prev-next-title">Platform structure</p>
       </div>
     </a>
     <a class="right-next"

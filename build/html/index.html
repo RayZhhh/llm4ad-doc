@@ -135,8 +135,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="_static/llm4ad-logo.png" class="logo__image only-light" alt="LLM4AD 0.0.1 documentation - Home"/>
+    <script>document.write(`<img src="_static/llm4ad-logo.png" class="logo__image only-dark" alt="LLM4AD 0.0.1 documentation - Home"/>`);</script>
   
-    <p class="title logo__title">LLM4AD 0.0.1 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -169,22 +175,23 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="dev/base/base_index.html">Base package introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1"><a class="reference internal" href="dev/platform_structure.html">Platform structure</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="dev/base/index.html">Base package introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev/base/code.html">base.code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev/base/evaluate.html">base.evaluate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev/base/modify_code.html">base.modify_code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev/base/sample.html">base.sample</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="dev/base_tutorial/base_tutorial_index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="dev/base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_code.html">Function, Program, Converter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_modify_code.html">ModifyCode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="dev/platform_structure.html">Platform structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev/run_new_task.html">Run your problem and LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/run_new_task.html">Run your algorithm design task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/llm.html">Specifying your LLM sampler</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Method</span></p>
 <ul class="nav bd-sidenav">
@@ -195,8 +202,27 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Task</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="task/obp.html">Online bin packing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="task/cvrp.html">CVRP</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="task/machine_learning/index.html">Machine learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="task/machine_learning/acrobot.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Acrobot</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/machine_learning/car_pole.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Cart Pole</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/machine_learning/mountain_car.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Mountain Car</strong></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="task/optimization/index.html">Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="task/optimization/cvrp_construct.html"><strong>Constructive Heuristics</strong> for Capacitated Vehicle Routing Problem (CVRP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/optimization/ovrp_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/optimization/tsp_construct.html"><strong>Constructive Heuristics</strong> for <strong>Traveling Salesman Problem (TSP)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/optimization/vrptw_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="task/science_discovery/index.html">Science discovery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="task/science_discovery/bacteria_grow.html"><strong>Biology Knowledge Discovery</strong> for <strong>Bacteria Growth</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/science_discovery/ordinary_differential_equation.html"><strong>Function Discovery</strong> for <strong>Oridinary Differential Equation</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/science_discovery/oscillator1.html"><strong>Math Knowledge Discovery</strong> for <strong>Oscillator1</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/science_discovery/oscillator2.html"><strong>Math Knowledge Discovery</strong> for <strong>Oscillator2</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/science_discovery/stress_strain.html"><strong>Physics Knowledge Discovery</strong> for <strong>Stress &amp; Strain</strong></a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -392,8 +418,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-repo">📦About this repo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">💡Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#news">🔥News</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comming-soon">🚀Comming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">🌟Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-methods">📦Supported methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-tasks">🚌Supported tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-do-we-add-this">📝About (do we add this?)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation">🧭Navigation</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
@@ -410,13 +440,39 @@ document.write(`
                   
   <section id="welcome-to-llm4ad-docs">
 <h1>Welcome to LLM4AD Docs!<a class="headerlink" href="#welcome-to-llm4ad-docs" title="Link to this heading">#</a></h1>
+<p><strong>Large language model for algorithm design (LLM4AD) platform</strong> has established an efficient, large language model-based framework for algorithm design,
+aimed at assisting researchers and related users in this field to conduct experimental exploration and industrial applications more quickly and conveniently.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/framework.pdf"><img alt="llm-eps" src="_images/framework.pdf" style="width: 100%;" />
+<a class="reference internal image-reference" href="_images/llm-eps.png"><img alt="llm-eps" src="_images/llm-eps.png" style="width: 100%;" />
 </a>
 </figure>
-<section id="about-this-repo">
-<h2>📦About this repo<a class="headerlink" href="#about-this-repo" title="Link to this heading">#</a></h2>
-<p>This repository implements state-of-the-art large language model based evlutionary program search (LLM-EPS) methods. We have implemented four LLM based EPS methods as follows.</p>
+<section id="news">
+<h2>🔥News<a class="headerlink" href="#news" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Nov 5th, 2024:</strong> LLM4AD 1.0.0 is released.</p></li>
+</ul>
+</section>
+<section id="comming-soon">
+<h2>🚀Comming soon<a class="headerlink" href="#comming-soon" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Other programming languages support.</p></li>
+</ul>
+</section>
+<section id="features">
+<h2>🌟Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>LLM4AD unifies interfaces for multiple methods.</p></li>
+<li><p>Evaluation acceleration: multiprocessing evaluation, add numba wrapper for algorithms.</p></li>
+<li><p>Secure evaluation: main process protection, timeout interruption.</p></li>
+<li><p>Log and profiling: Wandb and Tensorboard support.</p></li>
+<li><p>Resume run supported.</p></li>
+<li><p>LLM4AD provides package for code modification and secure evaluation for future development.</p></li>
+<li><p>LLM4AD is with GUI support.</p></li>
+</ul>
+</section>
+<section id="supported-methods">
+<h2>📦Supported methods<a class="headerlink" href="#supported-methods" title="Link to this heading">#</a></h2>
+<p>LLM4AD implements state-of-the-art large language model based evlutionary program search (LLM-EPS) methods. We have implemented four LLM based EPS methods as follows.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Methods</p></th>
@@ -427,10 +483,10 @@ document.write(`
 <tr class="row-even"><td><p>FunSearch</p></td>
 <td><p>Mathematical Discoveries from Program Search with Large Language Models (Nature 2023)</p></td>
 </tr>
-<tr class="row-odd"><td><p>EoH*</p></td>
+<tr class="row-odd"><td><p>EoH💡</p></td>
 <td><p>Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model (ICML 2024)</p></td>
 </tr>
-<tr class="row-even"><td><p>(1+1)-EPS* (HillClimbing)</p></td>
+<tr class="row-even"><td><p>(1+1)-EPS💡(HillClimbing)</p></td>
 <td><p>Understanding the Importance of Evolutionary Search in Automated Heuristic Design with Large Language Models (PPSN 2024)</p></td>
 </tr>
 <tr class="row-odd"><td><p>RandomSampling</p></td>
@@ -441,22 +497,52 @@ document.write(`
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>“*”: The implementation has some minor differences from the original method (demonstrated in their original paper), considering generality and multithreading acceleration.</p>
+<p>💡: The implementation has some minor differences from the original method (demonstrated in their original paper), considering generality and multithreading acceleration.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>We also provide LLM-free examples to help understanding/building the pipeline of these methods!</p>
 </div>
 </section>
-<section id="features">
-<h2>💡Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
+<section id="supported-tasks">
+<h2>🚌Supported tasks<a class="headerlink" href="#supported-tasks" title="Link to this heading">#</a></h2>
+<p>LLM4AD provides various example tasks including machine learning, optimization, and science discovery.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Domain</p></th>
+<th class="head"><p>Tasks</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Machine learning</p></td>
+<td><p>Acrobot, Cart Pole, Mountain Var</p></td>
+</tr>
+<tr class="row-odd"><td><p>Optimization</p></td>
+<td><p>CVRP, OVRP, TSP, VRPTW</p></td>
+</tr>
+<tr class="row-even"><td><p>Science discovery</p></td>
+<td><p>Bacteria Grow, Ordinary Differential Equation, Oscillator 1, Oscillator 2, Stress Strain</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="about-do-we-add-this">
+<h2>📝About (do we add this?)<a class="headerlink" href="#about-do-we-add-this" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Unified interfaces for multiple methods.</p></li>
-<li><p>Evaluation acceleration: multiprocessing evaluation, add numba wrapper for algorithms.</p></li>
-<li><p>Secure evaluation: main process protection, timeout interruption.</p></li>
-<li><p>Log: Wandb and Tensorboard support.</p></li>
-<li><p>Resume run supported.</p></li>
-<li><p>We provide easy-to-use pakage for manipulating the code and secure evaluation that help future development.</p></li>
+<li><p>This framework is powered by anyoptimization, a Python research community. It is developed and maintained by Julian Blank who is affiliated to the Computational Optimization and Innovation Laboratory (COIN) supervised by Kalyanmoy Deb at the Michigan State University in East Lansing, Michigan, USA.</p></li>
+<li><p>We have developed the framework for research purposes and hope to contribute to the research area by delivering tools for solving and analyzing multi-objective problems. Each algorithm is developed as close as possible to the proposed version to the best of our knowledge. NSGA-II and NSGA-III have been developed collaboratively with one of the authors and, therefore, we recommend using them for official benchmarks.</p></li>
+<li><p>If you intend to use our framework for any profit-making purposes, please contact us. Also, be aware that even state-of-the-art algorithms are just the starting point for many optimization problems. The full potential of genetic algorithms requires customization and the incorporation of domain knowledge. We have experience for more than 20 years in the optimization field and are eager to tackle challenging problems. Let us know if you are interested in working with experienced collaborators in optimization. Please keep in mind that only through such projects can we keep developing and improving our framework and making sure it meets the industry’s current needs.</p></li>
+<li><dl class="simple">
+<dt>Moreover, any kind of contribution is more than welcome:</dt><dd><ol class="arabic simple">
+<li><p>Give us a star on GitHub. This makes not only our framework but, in general, multi-objective optimization more accessible by being listed with a higher rank regarding specific keywords.</p></li>
+<li><p>To offer more and more new algorithms and features, we are more than happy if somebody wants to contribute by developing code. You can see it as a win-win situation because your development will be linked to your publication(s), which can significantly increase your work awareness. Please note that we aim to keep a high level of code quality, and some refactoring might be suggested.</p></li>
+<li><p>You like our framework, and you would like to use it for profit-making purposes? We are always searching for industrial collaborations because they help direct research to meet the industry’s needs. Our laboratory solving practical problems have a high priority for every student and can help you benefit from the research experience we have gained over the last years.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>If you find a bug or you have any kind of concern regarding the correctness, please use our Issue Tracker Nobody is perfect Moreover, only if we are aware of the issues we can start to investigate them.</p></li>
 </ul>
 </section>
 <section id="navigation">
@@ -473,10 +559,11 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dev/base/base_index.html">Base package introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev/base_tutorial/base_tutorial_index.html">Base package tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev/platform_structure.html">Platform structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev/run_new_task.html">Run your problem and LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/base/index.html">Base package introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/base_tutorial/index.html">Base package tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/run_new_task.html">Run your algorithm design task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/llm.html">Specifying your LLM sampler</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -491,8 +578,9 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Task</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="task/obp.html">Online bin packing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="task/cvrp.html">CVRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task/machine_learning/index.html">Machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task/optimization/index.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task/science_discovery/index.html">Science discovery</a></li>
 </ul>
 </div>
 </section>
@@ -534,8 +622,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-repo">📦About this repo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">💡Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#news">🔥News</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comming-soon">🚀Comming soon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">🌟Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-methods">📦Supported methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-tasks">🚌Supported tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-do-we-add-this">📝About (do we add this?)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigation">🧭Navigation</a><ul class="nav section-nav flex-column">
 </ul>
 </li>

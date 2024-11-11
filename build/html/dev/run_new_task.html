@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run your problem and LLM &#8212; LLM4AD 0.0.1 documentation</title>
+    <title>Run your algorithm design task &#8212; LLM4AD 0.0.1 documentation</title>
   
   
   
@@ -44,8 +44,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'dev/run_new_task';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="EoH" href="../method/eoh.html" />
-    <link rel="prev" title="Platform structure" href="platform_structure.html" />
+    <link rel="next" title="Specifying your LLM sampler" href="llm.html" />
+    <link rel="prev" title="Sampler and SamplerTrimmer" href="base_tutorial/tut_sample.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -132,8 +132,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/llm4ad-logo.png" class="logo__image only-light" alt="LLM4AD 0.0.1 documentation - Home"/>
+    <script>document.write(`<img src="../_static/llm4ad-logo.png" class="logo__image only-dark" alt="LLM4AD 0.0.1 documentation - Home"/>`);</script>
   
-    <p class="title logo__title">LLM4AD 0.0.1 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -161,26 +167,28 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/examples.html">Run examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/online_demo.html">Online demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/gui.html">GUI</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="base/base_index.html">Base package introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1"><a class="reference internal" href="platform_structure.html">Platform structure</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="base/index.html">Base package introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="base/code.html">base.code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base/evaluate.html">base.evaluate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base/modify_code.html">base.modify_code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base/sample.html">base.sample</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="base_tutorial/base_tutorial_index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_code.html">Function, Program, Converter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_modify_code.html">ModifyCode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="platform_structure.html">Platform structure</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Run your problem and LLM</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Run your algorithm design task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm.html">Specifying your LLM sampler</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Method</span></p>
 <ul class="nav bd-sidenav">
@@ -188,6 +196,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../method/funsearch.html">FunSearch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../method/hillclimb.html">HillClimb</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../method/randsample.html">RandSample</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Task</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../task/machine_learning/index.html">Machine learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../task/machine_learning/acrobot.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Acrobot</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/machine_learning/car_pole.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Cart Pole</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/machine_learning/mountain_car.html"><strong>Action Selection Strategy Heuristics</strong> for <strong>Mountain Car</strong></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../task/optimization/index.html">Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../task/optimization/cvrp_construct.html"><strong>Constructive Heuristics</strong> for Capacitated Vehicle Routing Problem (CVRP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/optimization/ovrp_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/optimization/tsp_construct.html"><strong>Constructive Heuristics</strong> for <strong>Traveling Salesman Problem (TSP)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/optimization/vrptw_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../task/science_discovery/index.html">Science discovery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../task/science_discovery/bacteria_grow.html"><strong>Biology Knowledge Discovery</strong> for <strong>Bacteria Growth</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/science_discovery/ordinary_differential_equation.html"><strong>Function Discovery</strong> for <strong>Oridinary Differential Equation</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/science_discovery/oscillator1.html"><strong>Math Knowledge Discovery</strong> for <strong>Oscillator1</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/science_discovery/oscillator2.html"><strong>Math Knowledge Discovery</strong> for <strong>Oscillator2</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/science_discovery/stress_strain.html"><strong>Physics Knowledge Discovery</strong> for <strong>Stress &amp; Strain</strong></a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -373,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Run your problem and LLM</h1>
+    <h1>Run your algorithm design task</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,11 +415,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-user-defined-sampler-class">Initialization of the user-defined sampler class</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-draw-sample-function">Implementation of the draw_sample function</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-template-program">2. Prepare a template program</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluator">3. Prepare an <cite>Evaluator</cite></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-evaluator-class">Initialization of the Evaluator class</a></li>
@@ -407,77 +435,31 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="run-your-problem-and-llm">
-<h1>Run your problem and LLM<a class="headerlink" href="#run-your-problem-and-llm" title="Link to this heading">#</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This tutorial will demonstrate a basic LLM4AD pipeline to solve an automated algorithm design task.</p>
-</div>
+  <section id="run-your-algorithm-design-task">
+<h1>Run your algorithm design task<a class="headerlink" href="#run-your-algorithm-design-task" title="Link to this heading">#</a></h1>
+<p>This tutorial will demonstrate a basic LLM4AD pipeline to solve an automated algorithm design task. The pipline is demonstrated in the following figure.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pipeline.png"><img alt="pipeline" src="../_images/pipeline.png" style="width: 100%;" />
+</a>
+</figure>
 <section id="prepare-a-sampler">
 <h2>1. Prepare a <cite>Sampler</cite><a class="headerlink" href="#prepare-a-sampler" title="Link to this heading">#</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <cite>Sampler</cite> class (an abstract class) defines how to access the LLM.
-You can either deploy an LLM locally on your own device/server or use an LLM API.
-The user should create a new child class of the <cite>Sampler</cite> class (extend <cite>Sampler</cite>) and implement (override) the <cite>draw_sample</cite> function.</p>
-</div>
-<section id="initialization-of-the-user-defined-sampler-class">
-<h3>Initialization of the user-defined sampler class<a class="headerlink" href="#initialization-of-the-user-defined-sampler-class" title="Link to this heading">#</a></h3>
-<p>There is a keyword argument <cite>auto_trim</cite> in the <cite>Sampler</cite> class, with a default value of <cite>True</cite>. This means that regardless of whether the user chooses a code completion model (such as StarCoder, CodeLlama-Python, etc.) or a chat model (GPT series, Llama series, etc.), we can automatically identify the “useful part” without descriptions and truncated code.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Therefore, unless there is a special issue, please <strong>always leave ‘auto_trim’ default</strong>.</p>
+<p>If you want to deploy your own LLM or specify the way to interact with LLMs, please see <a class="reference internal" href="llm.html"><span class="doc">Specifying your LLM sampler</span></a> for reference. This tutorial only demonstrates using OpenAI api.</p>
 </div>
-</section>
-<section id="implementation-of-the-draw-sample-function">
-<h3>Implementation of the draw_sample function<a class="headerlink" href="#implementation-of-the-draw-sample-function" title="Link to this heading">#</a></h3>
-<p>The <cite>draw_sample</cite> function decides how to obtain the generated content from the LLM and return the <cite>str</cite>-typed content</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>feel free to return the answer generated by LLM, which may incorporate some useless descriptions, as they will be trimmed automatically by our trimmer).</p>
-</div>
-<p>Here, we show a brief example of using LLM API.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.tools.llm.llm_api_https</span> <span class="kn">import</span> <span class="n">HttpsApi</span>
-
-<span class="c1"># note that the &#39;host&#39; has no &#39;https&#39;</span>
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">HttpsApi</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;api.bltcy.ai&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;Your API key&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gpt-3.5-turbo&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>You can also implement your own sampler.</p>
+<p>Prepare an ‘api_key’ and specify the LLM model to be used. Please note that the ‘base_url’, ‘api_key’, ‘model’ arguments are required.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">llm4ad</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">http.client</span>
-<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">llm4ad.tools.llm.llm_api_openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
 
-<span class="k">class</span> <span class="nc">MySampler</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Sampler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">draw_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">api_endpoint</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-                <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
-                    <span class="s1">&#39;max_tokens&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span>
-                    <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="s1">&#39;gpt-3.5-turbo&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;messages&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
-                <span class="p">})</span>
-                <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Apifox/1.0.0 (https://apifox.com)&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
-                <span class="p">}</span>
-                <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;/v1/chat/completions&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
-                <span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-                <span class="n">response</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
-                <span class="k">return</span> <span class="n">response</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">continue</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s1">&#39;a.b.c&#39;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;sk-abcwldfjlwhf23rwiduf2ienfeijo23f0isdhfnkwn&#39;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gpt-4o&#39;</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span>
+<span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </section>
 <section id="prepare-a-template-program">
 <h2>2. Prepare a template program<a class="headerlink" href="#prepare-a-template-program" title="Link to this heading">#</a></h2>
@@ -606,20 +588,20 @@ The user should create a new child class of the <cite>Sampler</cite> class (exte
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="platform_structure.html"
+       href="base_tutorial/tut_sample.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Platform structure</p>
+        <p class="prev-next-title">Sampler and SamplerTrimmer</p>
       </div>
     </a>
     <a class="right-next"
-       href="../method/eoh.html"
+       href="llm.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">EoH</p>
+        <p class="prev-next-title">Specifying your LLM sampler</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -639,11 +621,7 @@ The user should create a new child class of the <cite>Sampler</cite> class (exte
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-user-defined-sampler-class">Initialization of the user-defined sampler class</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-draw-sample-function">Implementation of the draw_sample function</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-template-program">2. Prepare a template program</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluator">3. Prepare an <cite>Evaluator</cite></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-evaluator-class">Initialization of the Evaluator class</a></li>
