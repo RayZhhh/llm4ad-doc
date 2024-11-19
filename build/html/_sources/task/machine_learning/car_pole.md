@@ -4,7 +4,11 @@
 
 The Cart Pole problem is a classic reinforcement learning task in OpenAI Gym, aiming to maximize the duration that a pole remains balanced on a moving cart within specific position and angle constraints.
 
-![Cart](./cart.gif)
+```{image} ./cart.gif
+:width: 80%
+:align: center
+```
+
 + **Given:** A cart with its position uniformly randomly assigned within the range (-0.05, 0.05), a pole stand on the cart.
 
 + **Objective:** Maximize the total number of iterations during which the pole angle remains within the range (-0.2095, 0.2095) (or ±12°).

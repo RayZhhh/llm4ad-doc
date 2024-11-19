@@ -3,7 +3,11 @@
 #### **Problem** 
 The Acrobot problem is a well-known reinforcement learning task in OpenAI Gym, where the objective is to minimize iterations needed to swing a two-link chain system's free end above a target height by applying torque to the actuated joint within specified angular constraints.
 
-![Acrobot](./acrobot.gif)
+```{image} ./acrobot.gif
+:width: 80%
+:align: center
+```
+
 + **Given:** 
 1. A acrobot. The system consists of two links connected linearly to form a chain, with one end of the chain fixed. The joint between the two links is actuated.
 2. theta1 is the angle of the first joint, where an angle of 0 indicates the first link is pointing directly downwards.

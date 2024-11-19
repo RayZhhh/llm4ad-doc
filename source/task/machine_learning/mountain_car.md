@@ -4,7 +4,12 @@
 
 The Mountain Car problem is a foundational reinforcement learning problem in OpenAI Gym, where the goal is to optimize the car's actions to reach a target with minimal iterations under specific position and velocity constraints.
 
-![car](./car.gif)
+
+```{image} ./car.gif
+:width: 80%
+:align: center
+```
+
 + **Given:** A car with its position uniformly randomly assigned within the range [-0.6, -0.4], a landscape, and a target marked by a flag.
 
 + **Objective:** Minimize the total number of iterations for the car to reach the target.

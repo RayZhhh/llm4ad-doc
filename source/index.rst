@@ -34,7 +34,7 @@ aimed at assisting researchers and related users in this field to conduct experi
 
 📦Supported methods
 -----------------------
-LLM4AD implements state-of-the-art large language model based evlutionary program search (LLM-EPS) methods. We have implemented four LLM based EPS methods as follows.
+LLM4AD implements state-of-the-art large language model based algorithm design methods.
 
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | Methods                                               | Paper title                                                                                                              |
@@ -97,7 +97,7 @@ LLM4AD provides various example tasks including machine learning, optimization, 
     getting_started/installation
     getting_started/examples
     getting_started/online_demo
-    getting_started/gui
+    gui/gui
 
 
 .. toctree::

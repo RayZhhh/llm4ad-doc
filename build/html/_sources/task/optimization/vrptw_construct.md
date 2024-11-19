@@ -13,7 +13,10 @@
   + **Inputs:** Current node, depot, unvisited nodes, demands of unvisited nodes, rest capacity of current vehicle, distance matrix, current time, time windows
   + **Outputs:** Next node
 
-<img src="./vrptw_construct.png" alt="llm4ad" style="zoom:50%;" />
+```{image} ./vrptw_construct.png
+:width: 50%
+:align: center
+```
 
 #### Evaluation
 

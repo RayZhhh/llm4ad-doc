@@ -13,7 +13,11 @@
   + **Inputs:** Current city, destination city, unvisited city, distance matrix
   + **Outputs:** Next city
 
-<img src="./tsp_construct.png" alt="llm4ad" style="zoom:50%;" />
+```{image} ./tsp_construct.png
+:width: 50%
+:align: center
+```
+
 
 #### Evaluation
 

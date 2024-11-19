@@ -13,7 +13,10 @@
   + **Inputs:** Current node, unvisited nodes, demands of unvisited nodes, rest capacity of current vehicle, distance matrix
   + **Outputs:** Next node
 
-<img src="./cvrp_construct.png" alt="llm4ad" style="zoom:50%;" />
+```{image} ./cvrp_construct.png
+:width: 85%
+:align: center
+```
 
 #### Evaluation
 

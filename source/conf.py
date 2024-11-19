@@ -22,7 +22,7 @@ extensions = [
     # 'IPython.sphinxext.ipython_console_highlighting'
 ]
 
-html_logo = 'assets/figs/llm4ad-logo.png'
+html_logo = 'assets/figs/logo.jpg'
 html_theme_options = {
     'path_to_docs': 'docs/source',
     'repository_url': 'https://github.com/Optima-CityU/LLM4AD',

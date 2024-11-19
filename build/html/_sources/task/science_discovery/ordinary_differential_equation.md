@@ -3,7 +3,11 @@
 #### **Problem** 
 The Ordinary Differential Equation (ODE) Function Discovery problem focuses on identifying functional relationships by minimizing mean square error using given X values and constant parameters.
 
-![ode](./ode.png)
+```{image} ./ode.png
+:width: 80%
+:align: center
+```
+
 + **Given:** X value, a set of constant parameters.
 
 + **Objective:** Minimize the mean square error.

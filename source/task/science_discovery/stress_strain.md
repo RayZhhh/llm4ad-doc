@@ -1,31 +1,35 @@
 # **Physics Knowledge Discovery** for **Stress & Strain**
 
-#### **Problem** 
-The Stress & Strain problem, proposed in LLM-SR: Scientific Equation Discovery via Programming with Large Language Models, is a physics-based task that focuses on discovering relationships by minimizing mean square error using environmental parameters.
+#### **Problem**
 
-![stress](./stress.png)
+The Stress & Strain problem, proposed in LLM-SR: Scientific Equation Discovery via Programming with Large Language Models, is a physics-based task that focuses on discovering relationships by minimizing mean square error using environmental
+parameters.
+
+```{image} ./stress.png
+:width: 80%
+:align: center
+```
+
 + **Given:** Environment parameters, a set of constant parameters.
 
 + **Objective:** Minimize the mean square error.
 
-+ **Constraints:** 
++ **Constraints:**
     - None
-
 
 #### Algorithm Design Task
 
 + **The task** is to design the function to fit the dataset.
-  + **Inputs:** Strain, temperature, numeric constants or parameters to be optimized.
-  + **Outputs:** Predicted value.
+    + **Inputs:** Strain, temperature, numeric constants or parameters to be optimized.
+    + **Outputs:** Predicted value.
 
 #### Evaluation
 
-+ **Dataset:** Dataset from **LLM-SR: Scientific Equation Discovery via Programming with Large Language Models**. 
++ **Dataset:** Dataset from **LLM-SR: Scientific Equation Discovery via Programming with Large Language Models**.
 
 + **Fitness:** Mean Square Error
 
-
-#### Template: 
+#### Template:
 
 ```python
 template_program = '''

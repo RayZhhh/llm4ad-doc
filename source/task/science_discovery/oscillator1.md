@@ -3,7 +3,10 @@
 #### **Problem** 
 The Oscillator1 problem, presented in LLM-SR: Scientific Equation Discovery via Programming with Large Language Models, is a mathematical task aimed at uncovering oscillator behaviors by minimizing mean square error using environmental parameters.
 
-![oscillator1](./oscillator1.png)
+```{image} ./oscillator1.png
+:width: 80%
+:align: center
+```
 + **Given:** Environment parameters, a set of constant parameters.
 
 + **Objective:** Minimize the mean square error.

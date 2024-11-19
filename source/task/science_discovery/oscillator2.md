@@ -3,7 +3,12 @@
 #### **Problem** 
 The Oscillator2 problem, introduced in LLM-SR: Scientific Equation Discovery via Programming with Large Language Models, is a mathematical exploration task focused on identifying oscillator patterns by minimizing mean square error with given environmental parameters.
 
-![oscillator2](./oscillator2.png)
+
+```{image} ./oscillator2.png
+:width: 80%
+:align: center
+```
+
 + **Given:** Environment parameters, a set of constant parameters.
 
 + **Objective:** Minimize the mean square error.

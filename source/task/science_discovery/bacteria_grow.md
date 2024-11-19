@@ -3,7 +3,11 @@
 #### **Problem** 
 The Bacteria Growth problem, introduced in LLM-SR: Scientific Equation Discovery via Programming with Large Language Models, is a biology-focused task aiming to discover growth patterns by minimizing mean square error based on environmental parameters.
 
-![Biology](./biology.png)
+```{image} ./biology.png
+:width: 80%
+:align: center
+```
+
 + **Given:** Bacteria environment parameters, a set of constant parameters.
 
 + **Objective:** Minimize the mean square error.
