@@ -1,8 +1,8 @@
-# **Constructive Heuristics** for Open Vehicle Routing Problem (OVRP)
+# **Constructive Heuristics** for Vehicle Routing Problem with Time Windows (VRPTW)
 
 #### **Problem** 
 
-+ The **Open Vehicle Routing Problem (OVRP)** is a variant of VRP that has open routes. 
++ The VRPTW is a variant of VRP that has time windows constraints.
   + **Given:** A depot, a set of customers with coordinates, demands, time windows, and service times, a fleet of vehicles of the same capacity
   + **Objective:** Minimize the total travelling distances of all routes
   + **Constraints:** The vehicles start from the depot and return to the depot, each customer be visited once and only once, all the demands should be satisfied, the vehicle capacity should not be exceeded, the time window constraints should be satisfied
@@ -14,7 +14,7 @@
   + **Outputs:** Next node
 
 ```{image} ./vrptw_construct.png
-:width: 50%
+:width: 80%
 :align: center
 ```
 

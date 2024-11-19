@@ -14,7 +14,7 @@
   + **Outputs:** Next city
 
 ```{image} ./tsp_construct.png
-:width: 50%
+:width: 80%
 :align: center
 ```
 

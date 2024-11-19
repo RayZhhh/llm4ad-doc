@@ -22,7 +22,15 @@ extensions = [
     # 'IPython.sphinxext.ipython_console_highlighting'
 ]
 
-html_logo = 'assets/figs/logo.jpg'
+html_logo = 'assets/figs/logo_dark.jpg'
+
+# 默认 logo (浅色主题)
+html_logo = "_static/logo_light.png"
+
+# 添加 JavaScript 来动态切换 logo
+def setup(app):
+    app.add_js_file("theme_switcher.js")
+
 html_theme_options = {
     'path_to_docs': 'docs/source',
     'repository_url': 'https://github.com/Optima-CityU/LLM4AD',
