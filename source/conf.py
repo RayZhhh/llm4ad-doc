@@ -24,13 +24,6 @@ extensions = [
 
 html_logo = 'assets/figs/logo_dark.jpg'
 
-# 默认 logo (浅色主题)
-html_logo = "_static/logo_light.png"
-
-# 添加 JavaScript 来动态切换 logo
-def setup(app):
-    app.add_js_file("theme_switcher.js")
-
 html_theme_options = {
     'path_to_docs': 'docs/source',
     'repository_url': 'https://github.com/Optima-CityU/LLM4AD',
@@ -49,3 +42,8 @@ exclude_patterns = ['_index.md', '**.ipynb_checkpoints']
 
 html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
+
+
+# 添加 JavaScript 来动态切换 logo
+# def setup(app):
+#     app.add_js_file('_static/theme_switcher.js')

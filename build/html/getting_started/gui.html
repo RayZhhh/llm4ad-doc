@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GUI &#8212; LLM4AD 0.0.1 documentation</title>
+    <title>Graphical User Interface (GUI) &#8212; LLM4AD 0.0.1 documentation</title>
   
   
   
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../_static/logo.jpg" class="logo__image only-light" alt="LLM4AD 0.0.1 documentation - Home"/>
-    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="LLM4AD 0.0.1 documentation - Home"/>`);</script>
+    <img src="../_static/logo_dark.jpg" class="logo__image only-light" alt="LLM4AD 0.0.1 documentation - Home"/>
+    <script>document.write(`<img src="../_static/logo_dark.jpg" class="logo__image only-dark" alt="LLM4AD 0.0.1 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -168,7 +168,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Run examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="online_demo.html">Online demo</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">GUI</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Graphical User Interface (GUI)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul class="nav bd-sidenav">
@@ -209,7 +209,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../task/optimization/cvrp_construct.html"><strong>Constructive Heuristics</strong> for Capacitated Vehicle Routing Problem (CVRP)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../task/optimization/ovrp_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../task/optimization/tsp_construct.html"><strong>Constructive Heuristics</strong> for <strong>Traveling Salesman Problem (TSP)</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../task/optimization/vrptw_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task/optimization/vrptw_construct.html"><strong>Constructive Heuristics</strong> for Vehicle Routing Problem with Time Windows (VRPTW)</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../task/science_discovery/index.html">Science discovery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -291,7 +291,7 @@
       
       
       
-      <li><a href="https://github.com/Optima-CityU/LLM4AD/edit/main/docs/source/getting_started/gui.rst" target="_blank"
+      <li><a href="https://github.com/Optima-CityU/LLM4AD/edit/main/docs/source/getting_started/gui.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -321,7 +321,7 @@
       
       
       
-      <li><a href="../_sources/getting_started/gui.rst" target="_blank"
+      <li><a href="../_sources/getting_started/gui.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -331,7 +331,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.rst</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -392,7 +392,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -403,11 +405,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>GUI</h1>
+    <h1>Graphical User Interface (GUI)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-window">Main window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#execution">Execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-new-methods-and-tasks">Adding new methods and tasks</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -417,8 +429,87 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="gui">
-<h1>GUI<a class="headerlink" href="#gui" title="Link to this heading">#</a></h1>
+  <section id="graphical-user-interface-gui">
+<h1>Graphical User Interface (GUI)<a class="headerlink" href="#graphical-user-interface-gui" title="Link to this heading">#</a></h1>
+<p>Welcome to the user documentation for our Graphical User Interface (GUI). The GUI provides a more intuitive and accessible way to use our platform and clearly displays results.</p>
+<section id="main-window">
+<h2>Main window<a class="headerlink" href="#main-window" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../_images/gui_image.png"><img alt="../_images/gui_image.png" src="../_images/gui_image.png" style="width: 100%;" />
+</a>
+<p>The main window includes the following:</p>
+<ol class="arabic simple">
+<li><p><strong>Menu bar :</strong></p></li>
+</ol>
+<p>The <em>Menu bar</em> contains four buttons, which, when clicked, will redirect to the <a class="reference external" href="https://llm4ad-doc.readthedocs.io/en/latest/">document</a>, <a class="reference external" href="https://github.com/Optima-CityU/LLM4AD">GitHub repository</a>, <a class="reference external" href="http://www.llm4ad.com/index.html">website</a>, and <a class="reference external" href="https://qm.qq.com/cgi-bin/qm/qr?k=4Imf8bn_d99-QXVcEJfOwCSD1KkcpbcD&amp;amp;jump_from=webapi&amp;amp;authKey=JtSmFh8BNKM97+TGnUdDgvT69TDTbo4UaLwgrZJSlsYqmVoCca/a5awU+TXt4zYB">QQ group</a>, respectively.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Configuration panel:</strong></p></li>
+</ol>
+<p>Users configure the settings of the large language model and set up the method and task to be executed in the <em>configuration panel</em>.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Results dashboard:</strong></p></li>
+</ol>
+<p>The <em>Results dashboard</em> shows the best algorithm and objective value obtained in real-time.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>“Run” button:</strong></p></li>
+</ol>
+<p>Click the <em>“Run” button</em> to execute the LLM4AD platform according to the setups in the <em>Configuration panel</em>.</p>
+<ol class="arabic simple" start="5">
+<li><p><strong>“Stop” button:</strong></p></li>
+</ol>
+<p>Click the <em>“Stop” button</em> to terminate the execution process.</p>
+<ol class="arabic simple" start="6">
+<li><p><strong>“Log files” button:</strong></p></li>
+</ol>
+<p>Click the <em>“Log files” button</em> to open the folder containing the log files.</p>
+</section>
+<section id="execution">
+<h2>Execution<a class="headerlink" href="#execution" title="Link to this heading">#</a></h2>
+<p><strong>Step 1</strong>, clone the repository from GitHub and install all requirements (Please refer to <a class="reference external" href="https://llm4ad-doc.readthedocs.io/en/latest/getting_started/installation.html">Installation</a>).</p>
+<p><strong>Step 2</strong>, execute the corresponding python script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd GUI
+$ python run_gui.py
+</pre></div>
+</div>
+<p><strong>Step 3</strong>, set the parameter of the large language model.</p>
+<ul class="simple">
+<li><p>host, the ip of your API provider, no “https://”, such as “api.bltcy.top”.</p></li>
+<li><p>key, your API key which may start with “sk-……”.</p></li>
+<li><p>model, the name of the large language model.</p></li>
+</ul>
+<p><strong>Step 4</strong>, select the <strong>Method</strong> to design the algorithm and set the parameter of the selected method.</p>
+<p><strong>Step 5</strong>, select which task you want to design an algorithm for. All tasks are divided into three types: <code class="docutils literal notranslate"><span class="pre">machine_learning</span></code>, <code class="docutils literal notranslate"><span class="pre">optimization</span></code>, and <code class="docutils literal notranslate"><span class="pre">science_discovery</span></code>. You can select the problem type in the Combobox.</p>
+<a class="reference internal image-reference" href="../_images/gui_combobox.png"><img alt="../_images/gui_combobox.png" class="align-center" src="../_images/gui_combobox.png" style="width: 40%;" />
+</a>
+<p><strong>Step 6</strong>, click the <strong>Run</strong> button. Results will be displayed in the <code class="docutils literal notranslate"><span class="pre">Results</span> <span class="pre">dashboard</span></code>.</p>
+<a class="reference internal image-reference" href="../_images/gui_gif.gif"><img alt="../_images/gui_gif.gif" class="align-center" src="../_images/gui_gif.gif" style="width: 80%;" />
+</a>
+</section>
+<section id="adding-new-methods-and-tasks">
+<h2>Adding new methods and tasks<a class="headerlink" href="#adding-new-methods-and-tasks" title="Link to this heading">#</a></h2>
+<p><strong>Step 1</strong>, ensure that the code for new methods and tasks is placed in the correct folders:</p>
+<ul class="simple">
+<li><p>The code for methods should be stored in the <code class="docutils literal notranslate"><span class="pre">llm4ad/method</span></code> folder.</p></li>
+<li><p>Depending on the type of the problem, code for tasks should be stored in <code class="docutils literal notranslate"><span class="pre">llm4ad/task/machine_learning</span></code>, <code class="docutils literal notranslate"><span class="pre">llm4ad/task/optimization</span></code>, or <code class="docutils literal notranslate"><span class="pre">llm4ad/task/science_discovery</span></code>.</p></li>
+</ul>
+<p><strong>Step 2</strong>, add comments at the start of the Python file named after the method/task to enable user-configurable parameters in the GUI. These comments should list the configurable parameters and their default values, following this specific format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># name: str: [class name]</span>
+<span class="c1"># Parameters:</span>
+<span class="c1"># [parameter name]: [data type]: [default value]</span>
+<span class="c1"># end</span>
+</pre></div>
+</div>
+<p>For example, in the case of the <code class="docutils literal notranslate"><span class="pre">eoh</span></code> method, the beginning of the file <code class="docutils literal notranslate"><span class="pre">llm4ad/method/eoh/eoh.py</span></code> is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># name: str: EoH</span>
+<span class="c1"># Parameters:</span>
+<span class="c1"># max_generations: int: 10</span>
+<span class="c1"># max_sample_nums: int: 20</span>
+<span class="c1"># pop_size: int: 5</span>
+<span class="c1"># num_evaluators: int: 4</span>
+<span class="c1"># end</span>
+</pre></div>
+</div>
+<p>The comments indicate that users can specify the values for the four parameters in the <code class="docutils literal notranslate"><span class="pre">eoh</span></code> method: <code class="docutils literal notranslate"><span class="pre">max_generations</span></code>, <code class="docutils literal notranslate"><span class="pre">max_sample_nums</span></code>, <code class="docutils literal notranslate"><span class="pre">pop_size</span></code>, and <code class="docutils literal notranslate"><span class="pre">num_evaluators</span></code>. These parameters must be <code class="docutils literal notranslate"><span class="pre">int</span></code>, and their default values are set to 10, 20, 5, and 4, respectively.</p>
+</section>
 </section>
 
 
@@ -456,6 +547,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-window">Main window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#execution">Execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-new-methods-and-tasks">Adding new methods and tasks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

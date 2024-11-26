@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Constructive Heuristics for Open Vehicle Routing Problem (OVRP) &#8212; LLM4AD 0.0.1 documentation</title>
+    <title>Constructive Heuristics for Vehicle Routing Problem with Time Windows (VRPTW) &#8212; LLM4AD 0.0.1 documentation</title>
   
   
   
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="LLM4AD 0.0.1 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="LLM4AD 0.0.1 documentation - Home"/>`);</script>
+    <img src="../../_static/logo_dark.jpg" class="logo__image only-light" alt="LLM4AD 0.0.1 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo_dark.jpg" class="logo__image only-dark" alt="LLM4AD 0.0.1 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -168,7 +168,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/examples.html">Run examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started/online_demo.html">Online demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../gui/gui.html">GUI Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/gui.html">Graphical User Interface (GUI)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
 <ul class="nav bd-sidenav">
@@ -209,7 +209,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cvrp_construct.html"><strong>Constructive Heuristics</strong> for Capacitated Vehicle Routing Problem (CVRP)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ovrp_construct.html"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tsp_construct.html"><strong>Constructive Heuristics</strong> for <strong>Traveling Salesman Problem (TSP)</strong></a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><strong>Constructive Heuristics</strong> for Vehicle Routing Problem with Time Windows (VRPTW)</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../science_discovery/index.html">Science discovery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -405,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Constructive Heuristics for Open Vehicle Routing Problem (OVRP)</h1>
+    <h1>Constructive Heuristics for Vehicle Routing Problem with Time Windows (VRPTW)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -430,12 +430,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="constructive-heuristics-for-open-vehicle-routing-problem-ovrp">
-<h1><strong>Constructive Heuristics</strong> for Open Vehicle Routing Problem (OVRP)<a class="headerlink" href="#constructive-heuristics-for-open-vehicle-routing-problem-ovrp" title="Link to this heading">#</a></h1>
+  <section id="constructive-heuristics-for-vehicle-routing-problem-with-time-windows-vrptw">
+<h1><strong>Constructive Heuristics</strong> for Vehicle Routing Problem with Time Windows (VRPTW)<a class="headerlink" href="#constructive-heuristics-for-vehicle-routing-problem-with-time-windows-vrptw" title="Link to this heading">#</a></h1>
 <section id="problem">
 <h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>The <strong>Open Vehicle Routing Problem (OVRP)</strong> is a variant of VRP that has open routes.</p>
+<li><p>The VRPTW is a variant of VRP that has time windows constraints.</p>
 <ul>
 <li><p><strong>Given:</strong> A depot, a set of customers with coordinates, demands, time windows, and service times, a fleet of vehicles of the same capacity</p></li>
 <li><p><strong>Objective:</strong> Minimize the total travelling distances of all routes</p></li>
@@ -454,7 +454,7 @@ document.write(`
 </ul>
 </li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/vrptw_construct.png"><img alt="../../_images/vrptw_construct.png" class="align-center" src="../../_images/vrptw_construct.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../_images/vrptw_construct.png"><img alt="../../_images/vrptw_construct.png" class="align-center" src="../../_images/vrptw_construct.png" style="width: 80%;" />
 </a>
 </section>
 <section id="evaluation">

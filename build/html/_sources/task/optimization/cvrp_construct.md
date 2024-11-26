@@ -14,7 +14,7 @@
   + **Outputs:** Next node
 
 ```{image} ./cvrp_construct.png
-:width: 85%
+:width: 80%
 :align: center
 ```
 
