@@ -3,10 +3,10 @@ Welcome to LLM4AD Docs!
 
 ===============================================
 
-.. figure:: ./assets/figs/logo_dark.jpg
+.. figure:: ./assets/figs/logo.jpg
     :alt: llm-eps
     :align: center
-    :width: 80%
+    :width: 100%
 
 ===============================================
 
@@ -82,19 +82,15 @@ LLM4AD provides various example tasks including machine learning, optimization, 
 📝About LLM4AD
 --------------------------
 
-- This platform is developed and maintained by LLM4AD developer group who is affiliated to the City University of Hong Kong (CityUHK) and Southern University of Science and Technology (SUSTech).
+This platform is developed and maintained by LLM4AD developer group from the City University of Hong Kong (CityUHK) and the Southern University of Science and Technology (SUSTech). We develop LLM4AD platform for research purposes and hope to contribute to the research area by delivering tools for LLM-based algorithm design methods.
 
-- We have developed the framework for research purposes and hope to contribute to the research area by delivering tools for LLM-based automated algorithm design methods.
+- **Contribution:** We are more than welcome to contribute including developing code and ideas to improve our platform. We are appriciated if you could give us a 🌟 on `GitHub <https://github.com/Optima-CityU/llm4ad>`_.
 
-- If you intend to use our framework for any profit-making purposes, please contact `us <http://www.llm4ad.com/contact.html>`_.
+- **Collaborations:** If you like our platform, and you would like to use it for profit-making purposes? We are always searching for industrial collaborations because they help direct research to meet the industry’s needs.
 
-- We are appriciated if you could give us a 🌟 on `GitHub <https://github.com/Optima-CityU/llm4ad>`_.
+- **Issue:** If you find a bug or you have any kind of concern regarding the correctness, please report us an issue.
 
-- We are more than welcome to contributions including developing code and ideas to improve our platform.
-
-- If you like our platform, and you would like to use it for profit-making purposes? We are always searching for industrial collaborations because they help direct research to meet the industry’s needs.
-
-- If you find a bug or you have any kind of concern regarding the correctness, please report us an issue.
+- **Profit Purpose:** If you intend to use LLM4AD for any profit-making purposes, please contact `us <https://www.llm4ad.com/contact.html>`_.
 
 
 🧭Navigation
