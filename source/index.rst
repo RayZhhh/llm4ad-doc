@@ -1,14 +1,6 @@
 Welcome to LLM4AD Docs!
 =======================
 
-===============================================
-
-.. figure:: ./assets/figs/logo.jpg
-    :alt: llm-eps
-    :align: center
-    :width: 100%
-
-===============================================
 
 **Large language model for algorithm design (LLM4AD) platform** has established an efficient, large language model-based framework for algorithm design,
 aimed at assisting researchers and related users in this field to conduct experimental exploration and industrial applications more quickly and conveniently.
