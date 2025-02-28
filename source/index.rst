@@ -40,13 +40,17 @@ LLM4AD implements state-of-the-art large language model based algorithm design m
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | Methods                                               | Paper title                                                                                                              |
 +=======================================================+==========================================================================================================================+
-| FunSearch                                             | Mathematical Discoveries from Program Search with Large Language Models (Nature 2023)                                    |
+| AEL                                                   | Algorithm Evolution Using Large Language Model (ArXiv 2023)                                                              |
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | EoH💡                                                 | Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model (ICML 2024)             |
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| (1+1)-EPS💡(HillClimbing)                             | Understanding the Importance of Evolutionary Search in Automated Heuristic Design with Large Language Models (PPSN 2024) |
+| MEoH                                                  | Multi-objective evolution of heuristic using large language model (AAAI 25)                                              |
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| RandomSampling                                        | Understanding the Importance of Evolutionary Search in Automated Heuristic Design with Large Language Models (PPSN 2024) |
+| FunSearch                                             | Mathematical Discoveries from Program Search with Large Language Models (Nature 2024)                                    |
++-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| (1+1)-EPS (HillClimbing)                              | Understanding the Importance of Evolutionary Search in Automated Heuristic Design with Large Language Models (PPSN 2024) |
++-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| RandomSampling                                        | ----                                                                                                                     |
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 
 .. note::
