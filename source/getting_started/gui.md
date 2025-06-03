@@ -77,21 +77,25 @@ $ python run_gui.py
 - The code for methods should be stored in the `llm4ad/method` folder.
 - Depending on the type of the problem, code for tasks should be stored in `llm4ad/task/machine_learning`, `llm4ad/task/optimization`, or `llm4ad/task/science_discovery`.
 
-**Step 2**, configure through a YAML file named paras.yaml in the corresponding method/task folder to enable user-configurable parameters in the GUI. This file should contain all user-configurable parameters and their default values, following the specific format shown below:
+**Step 2**, add comments at the start of the Python file named after the method/task to enable user-configurable parameters in the GUI. These comments should list the configurable parameters and their default values, following this specific format:
 
 ```
-name: [class name]
-[parameter name]: [default value]
+# name: str: [class name]
+# Parameters:
+# [parameter name]: [data type]: [default value]
+# end
 ```
 
-For example, in the case of the `eoh` method, the content of `llm4ad/method/eoh/paras.yaml` includes:
+For example, in the case of the `eoh` method, the beginning of the file `llm4ad/method/eoh/eoh.py` is:
 
 ```
-name: EoH
-max_generations: 10
-max_sample_nums: 20
-pop_size: 4
-num_evaluators: 4
+# name: str: EoH
+# Parameters:
+# max_generations: int: 10
+# max_sample_nums: int: 20
+# pop_size: int: 5
+# num_evaluators: int: 4
+# end
 ```
 
-The content indicates that users can configure the four parameters in the `eoh` method: `max_generations`, `max_sample_nums`, `pop_size`, and `num_evaluators`. These parameters default to 10, 20, 4, and 4, respectively.
+The comments indicate that users can specify the values for the four parameters in the `eoh` method: `max_generations`, `max_sample_nums`, `pop_size`, and `num_evaluators`. These parameters must be `int`, and their default values are set to 10, 20, 5, and 4, respectively.

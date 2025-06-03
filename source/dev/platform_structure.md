@@ -11,7 +11,7 @@ The LLM4AD pipeline is demonstrated in the figure below.
 
 |----**[llm4ad]**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[base]** basic package for modifying code, secure evaluation, profiling experiments.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[base]** basic package for modifying code, secure evaluation.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----`code.py` implements two classes, Function and Program, to record the evolved heuristic.
 
@@ -23,11 +23,11 @@ The LLM4AD pipeline is demonstrated in the figure below.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[method]** package for implementation classes of various LLM-EPS methods.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[tool]** package for predefined LLM interfaces.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[tool]** package for LLM interfaces and profiler.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[llm]** package for examples to use local LLMs, and use API interfaces.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[profiler]** package for base implementaions of Tensorboard and WandB profiler (logger).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[profiler]** package for base implementations of Tensorboard and WandB profiler (logger).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----**[task]** package for AHD task examples.
 

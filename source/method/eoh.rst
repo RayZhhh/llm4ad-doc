@@ -15,6 +15,7 @@ Constructor
 
     .. rubric:: Parameters
 
+
     - **llm** (llm4ad.base.LLM): An instance of 'llm4ad.base.LLM', which provides the way to query LLM.  
     - **evaluation** (llm4ad.base.Evaluator): An instance of 'llm4ad.base.Evaluator', which defines the way to calculate the score of a generated function.  
     - **profiler** (llm4ad.method.eoh.EoHProfiler | None): An instance of 'llm4ad.method.eoh.EoHProfiler'. If not needed, pass 'None'.  
@@ -42,6 +43,7 @@ Constructor
                 xxx.
             """
             pass
+
 
 
 Methods

@@ -1,7 +1,7 @@
 base.code
 ================
 
-This module contains two dataclasses, `Function` and `Program`, designed for parsing and representing Python code. These classes provide methods to manage function details, parse code structure, and retrieve specific functions from a program.
+This module contains two dataclasses, `Function` and `Program`, which are designed for representing Python code. These two classes provide methods to manage function details, parse code structure, and retrieve specific functions from a program.
 
 Class Definitions
 -----------------

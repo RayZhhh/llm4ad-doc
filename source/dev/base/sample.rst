@@ -4,7 +4,7 @@ base.sample
 Class Definitions
 -----------------
 
-.. class:: Sampler
+.. class:: LLM
 
     An abstract class designed for predicting continuations of provided source code using a language model.
 

@@ -5,14 +5,14 @@ Use 'https' requests your LLM
 --------------------------------
 
 .. note::
-    The `Sampler` class (an abstract class) defines how to access the LLM.
+    The `LLM` class (an abstract class) defines how to access the LLM.
     You can either deploy an LLM locally on your own device/server or use an LLM API.
-    The user should create a new child class of the `Sampler` class (extend `Sampler`) and implement (override) the `draw_sample` function.
+    The user should create a new child class of the `LLM` class (extend `LLM`) and implement (override) the `draw_sample` function.
 
 Initialization of the user-defined sampler class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There is a keyword argument `auto_trim` in the `Sampler` class, with a default value of `True`. This means that regardless of whether the user chooses a code completion model (such as StarCoder, CodeLlama-Python, etc.) or a chat model (GPT series, Llama series, etc.), we can automatically identify the “useful part” without descriptions and truncated code.
+There is a keyword argument `auto_trim` in the `LLM` class, with a default value of `True`. This means that regardless of whether the user chooses a code completion model (such as StarCoder, CodeLlama-Python, etc.) or a chat model (GPT series, Llama series, etc.), we can automatically identify the “useful part” without descriptions and truncated code.
 
 .. tip::
     Therefore, unless there is a special issue, please **always leave 'auto_trim' default**.
@@ -43,7 +43,7 @@ You can also implement your own sampler.
     import http.client
     import json
 
-    class MySampler(llm4ad.base.Sampler):
+    class MyLLM(llm4ad.base.LLM):
         def __init__(self):
             super().__init__()
 
@@ -124,7 +124,7 @@ In this code, we find the last function in the generated content as our target f
 
 .. code:: python
 
-    class Sampler4Example2(llm4ad.base.Sampler):
+    class LLM4Example2(llm4ad.base.LLM):
 
     def __init__(self):
         super().__init__()
