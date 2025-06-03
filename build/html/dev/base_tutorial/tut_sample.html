@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Sampler and SamplerTrimmer &#8212; LLM4AD 0.0.1 documentation</title>
+    <title>LLM and SampleTrimmer &#8212; LLM4AD 0.0.1 documentation</title>
   
   
   
@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -185,9 +185,9 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Base package tutorial</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../run_new_task.html">Run your algorithm design task</a></li>
@@ -408,7 +408,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Sampler and SamplerTrimmer</h1>
+    <h1>LLM and SampleTrimmer</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -423,7 +423,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Implementation-of-the-draw_sample-function">Implementation of the draw_sample function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#SamplerTrimmer-class">SamplerTrimmer class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#SampleTrimmer-class">SampleTrimmer class</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Tutorial">Tutorial</a></li>
 </ul>
             </nav>
@@ -436,26 +436,26 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="Sampler-and-SamplerTrimmer">
-<h1>Sampler and SamplerTrimmer<a class="headerlink" href="#Sampler-and-SamplerTrimmer" title="Link to this heading">#</a></h1>
+  <section id="LLM-and-SampleTrimmer">
+<h1>LLM and SampleTrimmer<a class="headerlink" href="#LLM-and-SampleTrimmer" title="Link to this heading">#</a></h1>
 <blockquote>
-<div><p>This tutorial gives details about two import classes to process LLM generated codes (known as “samples”). The <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> class defines how to access to the LLM, while the <code class="docutils literal notranslate"><span class="pre">SamplerTrimmer</span></code> class trims the unuseful part of the code using abstract systax tree (ast) package.</p>
+<div><p>This tutorial gives details about two import classes to process LLM generated codes (known as “samples”). The <code class="docutils literal notranslate"><span class="pre">LLM</span></code> class defines how to access to the LLM, while the <code class="docutils literal notranslate"><span class="pre">SampleTrimmer</span></code> class trims the unuseful part of the code using abstract systax tree (ast) package.</p>
 </div></blockquote>
 <section id="Sampler-class">
 <h2>Sampler class<a class="headerlink" href="#Sampler-class" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> class defines how to access to the LLM. The user can either deploy an LLM locally on your own device/server, or use LLM API. The user should create a new child class of the <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> class (extend <code class="docutils literal notranslate"><span class="pre">Sampler</span></code>) and implement (override) the <code class="docutils literal notranslate"><span class="pre">draw_sample</span></code> function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">LLM</span></code> class defines how to access to the LLM. The user can either deploy an LLM locally on your own device/server, or use LLM API. The user should create a new child class of the <code class="docutils literal notranslate"><span class="pre">LLM</span></code> class (extend <code class="docutils literal notranslate"><span class="pre">LLM</span></code>) and implement (override) the <code class="docutils literal notranslate"><span class="pre">draw_sample</span></code> function.</p>
 <section id="Initialization-of-the-user-defined-sampler-class">
 <h3>Initialization of the user-defined sampler class<a class="headerlink" href="#Initialization-of-the-user-defined-sampler-class" title="Link to this heading">#</a></h3>
-<p>There is a keyword argument <code class="docutils literal notranslate"><span class="pre">auto_trim</span></code> in the <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> class of which the default value is <code class="docutils literal notranslate"><span class="pre">True</span></code>. This means no matter the user chooses a code completion model (such as StarCoder, CodeLlama-Python, etc.) or a chat model (GPT series, Llama series, etc.), we can automatically identify the “useful part” without descriptions and truncated code. So, if there is no special issue, please <strong>always leave it default</strong>.</p>
+<p>There is a keyword argument <code class="docutils literal notranslate"><span class="pre">auto_trim</span></code> in the <code class="docutils literal notranslate"><span class="pre">LLM</span></code> class of which the default value is <code class="docutils literal notranslate"><span class="pre">True</span></code>. This means no matter the user chooses a code completion model (such as StarCoder, CodeLlama-Python, etc.) or a chat model (GPT series, Llama series, etc.), we can automatically identify the “useful part” without descriptions and truncated code. So, if there is no special issue, please <strong>always leave it default</strong>.</p>
 </section>
 <section id="Implementation-of-the-draw_sample-function">
 <h3>Implementation of the draw_sample function<a class="headerlink" href="#Implementation-of-the-draw_sample-function" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">draw_sample</span></code> function decides the manner to obtain the generated content from LLM and return the <code class="docutils literal notranslate"><span class="pre">str</span></code> -typed content <strong>(feel free to return the answer generated by LLM, which may incorporate some useless descriptions, as they will be trimmed automatically by our trimmer)</strong>. Here, we show a brief example of using LLM API.</p>
 </section>
 </section>
-<section id="SamplerTrimmer-class">
-<h2>SamplerTrimmer class<a class="headerlink" href="#SamplerTrimmer-class" title="Link to this heading">#</a></h2>
-<p>The following examples demonstrate how <code class="docutils literal notranslate"><span class="pre">SamplerTrimmer</span></code> works.</p>
+<section id="SampleTrimmer-class">
+<h2>SampleTrimmer class<a class="headerlink" href="#SampleTrimmer-class" title="Link to this heading">#</a></h2>
+<p>The following examples demonstrate how <code class="docutils literal notranslate"><span class="pre">SampleTrimmer</span></code> works.</p>
 </section>
 <section id="Tutorial">
 <h2>Tutorial<a class="headerlink" href="#Tutorial" title="Link to this heading">#</a></h2>
@@ -463,7 +463,7 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.base</span> <span class="kn">import</span> <span class="n">SamplerTrimmer</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>from llm4ad.base import SampleTrimmer
 </pre></div>
 </div>
 </div>
@@ -472,29 +472,29 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">llm_response_content</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
-<span class="s1">OK, this is the generated code:</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>llm_response_content = &#39;&#39;&#39;\
+OK, this is the generated code:
 
-<span class="s1">def my_function(arr):</span>
-<span class="s1">    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;</span>
-<span class="s1">    max = np.max(arr)</span>
-<span class="s1">    min = np.min(arr)</span>
-<span class="s1">    result = max / min</span>
-<span class="s1">    return result</span>
+def my_function(arr):
+    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;
+    max = np.max(arr)
+    min = np.min(arr)
+    result = max / min
+    return result
 
-<span class="s1">This function aims to calculate the ...</span>
-<span class="s1">&#39;&#39;&#39;</span>
+This function aims to calculate the ...
+&#39;&#39;&#39;
 </pre></div>
 </div>
 </div>
-<p>In our pipline, we only want the informative part, i.e., the code for the heuristic. So we can trim the redundant part (“OK, this is …”, “This function aims to …”) of the generated content by using the <em>SamplerTrimmer.auto_trim</em>. The <em>auto_trim</em> function can automatically identify if a response content is come from an instruct model (i.e., GPT-3.5) or a completion model (i.e., StarCoder), and perform correspond operations to trim the code.</p>
+<p>In our pipline, we only want the informative part, i.e., the code for the heuristic. So we can trim the redundant part (“OK, this is …”, “This function aims to …”) of the generated content by using the <em>SampleTrimmer.auto_trim</em>. The <em>auto_trim</em> function can automatically identify if a response content is come from an instruct model (i.e., GPT-3.5) or a completion model (i.e., StarCoder), and perform correspond operations to trim the code.</p>
 <p>The trimmed result of the response content consists of <strong>function body</strong> and <strong>descriptions</strong> after the function body (don’t worry about the content after the function body, as they can be removed easily).</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">trimmed_response_content</span> <span class="o">=</span> <span class="n">SamplerTrimmer</span><span class="o">.</span><span class="n">auto_trim</span><span class="p">(</span><span class="n">llm_response_content</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">trimmed_response_content</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>trimmed_response_content = SampleTrimmer.auto_trim(llm_response_content)
+print(trimmed_response_content)
 </pre></div>
 </div>
 </div>
@@ -518,15 +518,15 @@ This function aims to calculate the ...
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">template_program</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
-<span class="s1">import numpy as np</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>template_program = &#39;&#39;&#39;\
+import numpy as np
 
-<span class="s1">def func(arr):</span>
-<span class="s1">    return arr</span>
-<span class="s1">&#39;&#39;&#39;</span>
+def func(arr):
+    return arr
+&#39;&#39;&#39;
 
-<span class="n">program</span> <span class="o">=</span> <span class="n">SamplerTrimmer</span><span class="o">.</span><span class="n">sample_to_program</span><span class="p">(</span><span class="n">trimmed_response_content</span><span class="p">,</span> <span class="n">template_program</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">program</span><span class="p">))</span>
+program = SampleTrimmer.sample_to_program(trimmed_response_content, template_program)
+print(str(program))
 </pre></div>
 </div>
 </div>
@@ -545,6 +545,14 @@ def func(arr):
 
 
 </pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -607,7 +615,7 @@ def func(arr):
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Implementation-of-the-draw_sample-function">Implementation of the draw_sample function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#SamplerTrimmer-class">SamplerTrimmer class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#SampleTrimmer-class">SampleTrimmer class</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Tutorial">Tutorial</a></li>
 </ul>
   </nav></div>

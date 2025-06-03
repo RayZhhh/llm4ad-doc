@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -47,8 +47,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'dev/base_tutorial/tut_modify_code';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Sampler and SamplerTrimmer" href="tut_sample.html" />
-    <link rel="prev" title="Evaluator and SecureEvaluator" href="tut_evaluate.html" />
+    <link rel="next" title="LLM and SampleTrimmer" href="tut_sample.html" />
+    <link rel="prev" title="Evaluation and SecureEvaluator" href="tut_evaluate.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,9 +185,9 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Base package tutorial</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../run_new_task.html">Run your algorithm design task</a></li>
@@ -441,8 +441,8 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.base</span> <span class="kn">import</span> <span class="n">ModifyCode</span>
-<span class="kn">from</span> <span class="nn">llm4ad.base</span> <span class="kn">import</span> <span class="n">TextFunctionProgramConverter</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>from llm4ad.base import ModifyCode
+from llm4ad.base import TextFunctionProgramConverter
 </pre></div>
 </div>
 </div>
@@ -450,17 +450,17 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">example_program_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
-<span class="s1">import numpy as np</span>
-<span class="s1">from typing import List</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>example_program_str = &#39;&#39;&#39;\
+import numpy as np
+from typing import List
 
-<span class="s1">def example_function(arr: List | np.ndarray):</span>
-<span class="s1">    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;</span>
-<span class="s1">    max = np.max(arr)</span>
-<span class="s1">    min = np.min(arr)</span>
-<span class="s1">    result = max / min</span>
-<span class="s1">    return result</span>
-<span class="s1">&#39;&#39;&#39;</span>
+def example_function(arr: List | np.ndarray):
+    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;
+    max = np.max(arr)
+    min = np.min(arr)
+    result = max / min
+    return result
+&#39;&#39;&#39;
 </pre></div>
 </div>
 </div>
@@ -469,8 +469,8 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">all_functions</span> <span class="o">=</span> <span class="n">ModifyCode</span><span class="o">.</span><span class="n">get_functions_name</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">all_functions</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>all_functions = ModifyCode.get_functions_name(example_program_str)
+print(all_functions)
 </pre></div>
 </div>
 </div>
@@ -487,9 +487,9 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">function_name</span> <span class="o">=</span> <span class="n">TextFunctionProgramConverter</span><span class="o">.</span><span class="n">text_to_function</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
-<span class="n">modified_program</span> <span class="o">=</span> <span class="n">ModifyCode</span><span class="o">.</span><span class="n">rename_function</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">,</span> <span class="n">function_name</span><span class="p">,</span> <span class="s1">&#39;ha_ha_ha_ha&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">modified_program</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>function_name = TextFunctionProgramConverter.text_to_function(example_program_str).name
+modified_program = ModifyCode.rename_function(example_program_str, function_name, &#39;ha_ha_ha_ha&#39;)
+print(modified_program)
 </pre></div>
 </div>
 </div>
@@ -515,9 +515,9 @@ def ha_ha_ha_ha(arr: List | np.ndarray):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">function_name</span> <span class="o">=</span> <span class="n">TextFunctionProgramConverter</span><span class="o">.</span><span class="n">text_to_function</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
-<span class="n">modified_program</span> <span class="o">=</span> <span class="n">ModifyCode</span><span class="o">.</span><span class="n">add_numba_decorator</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">,</span> <span class="n">function_name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">modified_program</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>function_name = TextFunctionProgramConverter.text_to_function(example_program_str).name
+modified_program = ModifyCode.add_numba_decorator(example_program_str, function_name)
+print(modified_program)
 </pre></div>
 </div>
 </div>
@@ -544,9 +544,9 @@ def example_function(arr: List | np.ndarray):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">function_name</span> <span class="o">=</span> <span class="n">TextFunctionProgramConverter</span><span class="o">.</span><span class="n">text_to_function</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
-<span class="n">modified_program</span> <span class="o">=</span> <span class="n">ModifyCode</span><span class="o">.</span><span class="n">add_np_random_seed_below_numpy_import</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">2024</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">modified_program</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>function_name = TextFunctionProgramConverter.text_to_function(example_program_str).name
+modified_program = ModifyCode.add_np_random_seed_below_numpy_import(example_program_str, seed=2024)
+print(modified_program)
 </pre></div>
 </div>
 </div>
@@ -572,8 +572,8 @@ def example_function(arr: List | np.ndarray):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">modified_function</span> <span class="o">=</span> <span class="n">ModifyCode</span><span class="o">.</span><span class="n">add_import_package_statement</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="s1">&#39;pandas&#39;</span><span class="p">,</span> <span class="n">as_name</span><span class="o">=</span><span class="s1">&#39;pd&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">modified_function</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>modified_function = ModifyCode.add_import_package_statement(example_program_str, package_name=&#39;pandas&#39;, as_name=&#39;pd&#39;)
+print(modified_function)
 </pre></div>
 </div>
 </div>
@@ -599,8 +599,8 @@ def example_function(arr: List | np.ndarray):
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">modified_function</span> <span class="o">=</span> <span class="n">ModifyCode</span><span class="o">.</span><span class="n">replace_div_with_protected_div</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">modified_function</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>modified_function = ModifyCode.replace_div_with_protected_div(example_program_str, delta=1e-4)
+print(modified_function)
 </pre></div>
 </div>
 </div>
@@ -653,7 +653,7 @@ def _protected_div(x, y, delta=0.0001):
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Evaluator and SecureEvaluator</p>
+        <p class="prev-next-title">Evaluation and SecureEvaluator</p>
       </div>
     </a>
     <a class="right-next"
@@ -661,7 +661,7 @@ def _protected_div(x, y, delta=0.0001):
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sampler and SamplerTrimmer</p>
+        <p class="prev-next-title">LLM and SampleTrimmer</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

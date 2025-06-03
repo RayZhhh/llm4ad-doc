@@ -6,7 +6,7 @@ Welcome to LLM4AD Docs!
 aimed at assisting researchers and related users in this field to conduct experimental exploration and industrial applications more quickly and conveniently.
 
 
-.. figure:: ./assets/figs/llm-eps.png
+.. figure:: ./assets/figs/overview.png
     :alt: llm-eps
     :align: center
     :width: 100%

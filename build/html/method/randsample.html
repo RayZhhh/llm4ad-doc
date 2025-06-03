@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -182,9 +182,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dev/base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/run_new_task.html">Run your algorithm design task</a></li>
@@ -456,9 +456,8 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RandSample</span></span><a class="headerlink" href="#RandSample" title="Link to this definition">#</a></dt>
 <dd><p class="rubric">Parameters</p>
 <ul class="simple">
-<li><p><strong>template_program</strong> (str): The seed program as the initial function. Should be executable, including imports, definitions, and body.</p></li>
-<li><p><strong>sampler</strong> (Sampler): An instance of <cite>alevo.base.Sampler</cite> for querying the LLM.</p></li>
-<li><p><strong>evaluator</strong> (Evaluator): An instance of <cite>alevo.base.Evaluator</cite> to calculate the scores of generated functions.</p></li>
+<li><p><strong>llm</strong> (LLM): An instance of <cite>llm4ad.base.LLM</cite> for querying the LLM.</p></li>
+<li><p><strong>evaluation</strong> (Evaluation): An instance of <cite>alevo.base.Evaluation</cite> to calculate the scores of generated functions.</p></li>
 <li><p><strong>profiler</strong> (RandSampleProfiler, optional): An instance of <cite>alevo.method.randsample.RandSampleProfiler</cite>. Pass <cite>None</cite> if profiling is not needed.</p></li>
 <li><p><strong>max_sample_nums</strong> (int | None, optional): Maximum number of samples to evaluate. Defaults to 20.</p></li>
 <li><p><strong>resume_mode</strong> (bool, optional): If set to <cite>True</cite>, skips the initial evaluation of the template program. Defaults to <cite>False</cite>.</p></li>

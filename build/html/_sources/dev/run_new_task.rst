@@ -11,7 +11,7 @@ This tutorial will demonstrate a basic LLM4AD pipeline to solve an automated alg
     :width: 100%
 
 
-1. Prepare a `Sampler`
+1. Prepare a `LLM`
 -----------------------
 
 .. tip::
@@ -22,11 +22,11 @@ Prepare an 'api_key' and specify the LLM model to be used. Please note that the 
 .. code:: python
 
     import llm4ad
-    from llm4ad.tools.llm.llm_api_openai import OpenAI
+    from llm4ad.tools.llm.llm_api_openai import OpenAIAPI
 
-    sampler = OpenAI(
+    llm = OpenAIAPI(
         base_url='a.b.c',
-        api_key='sk-abcwldfjlwhf23rwiduf2ienfeijo23f0isdhfnkwn',
+        api_key='sk-yourapikeyhere',
         model='gpt-4o',
         timeout=30
     )
@@ -73,11 +73,11 @@ Assuming that we are going to solve the Online Bin Packing problem, an example t
         return bins - item
     '''
 
-3. Prepare an `Evaluator`
--------------------------
+3. Prepare an `Evaluation`
+---------------------------
 
 .. note::
-    The `Evaluator` class determines how to assess the score of a given algorithm under specific settings and tasks, which is typically task-dependent. Therefore, we may design a new `Evaluator` for a specified problem. The Evaluator class (an abstract class) is a user interface. We should define a child class of `Evaluator` (which extends the `Evaluator` class).
+    The `Evaluation` class determines how to evaluate the score of a given algorithm, which is typically task-dependent. Therefore, we may design a new `Evaluation` for a specified problem. The Evaluator class (an abstract class) is a user interface. We should define a child class of `Evaluation` (which extends the `Evaluation` class).
 
 Initialization of the Evaluator class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -90,10 +90,10 @@ Implementation of the evaluate_program function
 The user should override the `evaluate_program` function in the Evaluator class (where the `evaluate_program` function remains unimplemented). The evaluate_program function evaluates the algorithm and gives a score. If you think the algorithm is infeasible/invalid/illegal, the user should return `None`. Otherwise, an int/float value or a "comparable" value (which may implement `>` operator between them) is desired.
 
 .. important::
-    If you think the algorithm to be evaluated is infeasible/invalid/illegal, the user should return `None`. Otherwise, an int/float value or a "comparable" value (which may implement `>` operator between them) is desired.
+    If the algorithm to be evaluated is infeasible/invalid/illegal, please return `None`, or raise an Exception. Otherwise, an int/float value or a "comparable" value (which may implement `>` operator between them) is desired.
 
 .. tip::
-    Here you don't have to concern the evaluation time, as we will terminate the evaluation automatically in the backend if you have set `timeout_second` parameter.
+    The `SecureEvaluator` will automatically terminate evaluation once the `timeout_second` is set. The fitness (objective) score of that algorithm will be set as `None` if timeout happens.
 
 The first argument of the function is a `program_str`, which is a `str` type of the algorithm to be evaluated. If you set the `use_numba_accelerate` or similar settings to `True` in the initialization, you will obtain a `str` typed function that has been modified. This `str` is provided to let you:
 
@@ -103,14 +103,14 @@ The first argument of the function is a `program_str`, which is a `str` type of 
 
 - Other usages such as calculating the "novelty" of the code or checking if the code has been evaluated before.
 
-The second argument of the function is a `callable_func`, which is an executable object. You can simply call (invoke) it by passing arguments to `callable_func`, such as `callable_function(arg0, arg1)`.
+The second argument of the function is a `callable_func`, which is an callable object. You can simply call (invoke) it by passing arguments to `callable_func`, such as `callable_function(arg0, arg1)`.
 
-Feel free to use the platform-provided evaluator for the Online Bin Packing problem.
+LLM4AD has also encapsulated varying Evaluation instances for different tasks.
 
 .. code:: python
 
     import llm4ad
-    evaluator = llm4ad.problem.online_bin_packing.OBPEvaluator()
+    evaluation = llm4ad.task.optimization.online_bin_packing.OBPEvaluation()
 
 4. Specify a profiler and a logger (if necessary)
 -------------------------------------------------
@@ -145,11 +145,11 @@ Pass above argument to EoH and run.
     from llm4ad.method.eoh import EoH
 
     eoh = EoH(
-        template_program=template,
-        sampler=sampler,
+        llm=llm,
         profiler=profiler,
-        evaluator=evaluator,
+        evaluation=evaluation,
         max_sample_nums=1000,
+        max_generations=None,
         num_samplers=4,
         num_evaluators=4
     )

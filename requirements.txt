@@ -7,5 +7,5 @@ myst-parser
 nbsphinx
 ipython
 pandoc
-# py-pandoc
-# conda install pandoc
+#py-pandoc
+#conda install pandoc

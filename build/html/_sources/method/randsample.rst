@@ -15,9 +15,8 @@ Constructor
 
     .. rubric:: Parameters
 
-    - **template_program** (str): The seed program as the initial function. Should be executable, including imports, definitions, and body.
-    - **sampler** (Sampler): An instance of `alevo.base.Sampler` for querying the LLM.
-    - **evaluator** (Evaluator): An instance of `alevo.base.Evaluator` to calculate the scores of generated functions.
+    - **llm** (LLM): An instance of `llm4ad.base.LLM` for querying the LLM.
+    - **evaluation** (Evaluation): An instance of `alevo.base.Evaluation` to calculate the scores of generated functions.
     - **profiler** (RandSampleProfiler, optional): An instance of `alevo.method.randsample.RandSampleProfiler`. Pass `None` if profiling is not needed.
     - **max_sample_nums** (int | None, optional): Maximum number of samples to evaluate. Defaults to 20.
     - **resume_mode** (bool, optional): If set to `True`, skips the initial evaluation of the template program. Defaults to `False`.

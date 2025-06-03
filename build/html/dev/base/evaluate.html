@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -182,9 +182,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../run_new_task.html">Run your algorithm design task</a></li>
@@ -416,7 +416,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-definitions">Class Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Evaluator"><code class="docutils literal notranslate"><span class="pre">Evaluator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Evaluation"><code class="docutils literal notranslate"><span class="pre">Evaluation</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#SecureEvaluator"><code class="docutils literal notranslate"><span class="pre">SecureEvaluator</span></code></a></li>
 </ul>
 </li>
@@ -433,12 +433,12 @@ document.write(`
                   
   <section id="base-evaluate">
 <h1>base.evaluate<a class="headerlink" href="#base-evaluate" title="Link to this heading">#</a></h1>
-<p>This module provides two main classes: <cite>Evaluator</cite> and <cite>SecureEvaluator</cite>. These classes enable the secure and configurable evaluation of generated code, incorporating optional optimizations and safety features like timeout handling and protected division.</p>
+<p>This module provides two main classes: <cite>Evaluation</cite> and <cite>SecureEvaluator</cite>. These classes enable the secure and configurable evaluation of generated code, incorporating optional optimizations and safety features like timeout handling and protected division.</p>
 <section id="class-definitions">
 <h2>Class Definitions<a class="headerlink" href="#class-definitions" title="Link to this heading">#</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="Evaluator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Evaluator</span></span><a class="headerlink" href="#Evaluator" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="Evaluation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Evaluation</span></span><a class="headerlink" href="#Evaluation" title="Link to this definition">#</a></dt>
 <dd><p>An abstract base class for evaluating Python code with customizable options to handle division safety, random seed setting, and code execution.</p>
 <p><strong>Constructor Parameters</strong>:</p>
 <ul class="simple">
@@ -453,24 +453,24 @@ document.write(`
 </ul>
 <p><strong>Example Modification</strong>:
 When <cite>use_numba_accelerate=True</cite>, <cite>use_protected_div=True</cite>, and <cite>random_seed=2024</cite>, an input function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 </pre></div>
 </div>
 <p>Will be modified to:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numba</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numba</span>
 
 <span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">():</span>
    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2024</span><span class="p">)</span>
    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
    <span class="k">return</span> <span class="n">_protected_div</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">_protected_div</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_protected_div</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -553,7 +553,7 @@ When <cite>use_numba_accelerate=True</cite>, <cite>use_protected_div=True</cite>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-definitions">Class Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Evaluator"><code class="docutils literal notranslate"><span class="pre">Evaluator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Evaluation"><code class="docutils literal notranslate"><span class="pre">Evaluation</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#SecureEvaluator"><code class="docutils literal notranslate"><span class="pre">SecureEvaluator</span></code></a></li>
 </ul>
 </li>

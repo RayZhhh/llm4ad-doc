@@ -15,9 +15,8 @@ Constructor
 
     .. rubric:: Parameters
 
-    - **template_program** (str): The seed program as the initial function of the run. The program should be executable and include necessary imports and definitions.
-    - **sampler** (Sampler): An instance of `alevo.base.Sampler` for querying the LLM.
-    - **evaluator** (Evaluator): An instance of `alevo.base.Evaluator` to calculate the score of the generated function.
+    - **llm** (LLM): An instance of `alevo.base.Sampler` for querying the LLM.
+    - **evaluation** (Evaluation): An instance of `alevo.base.Evaluation` to calculate the score of the generated function.
     - **profiler** (HillClimbProfiler, optional): An instance of `alevo.method.hillclimb.HillClimbProfiler`. Pass `None` if profiling is not needed.
     - **max_sample_nums** (int, optional): Maximum number of functions to evaluate. Defaults to 20.
     - **num_samplers** (int, optional): Number of sampler threads. Defaults to 4.
@@ -65,7 +64,7 @@ Attributes
 - **_function_to_evolve** (Function): The function that will be evolved.
 - **_best_function_found** (Function): The best function found during the optimization process.
 - **_sampler** (Sampler): The sampler instance used for sampling.
-- **_evaluator** (Evaluator): The evaluator instance used for evaluation.
+- **_evaluator** (Evaluation): The evaluation instance used for evaluation.
 - **_profiler** (HillClimbProfiler): The profiler instance, if used.
 - **_evaluation_executor** (concurrent.futures.Executor): The executor for parallel evaluation.
 - **_sampler_threads** (List[Thread]): The list of threads used for sampling.

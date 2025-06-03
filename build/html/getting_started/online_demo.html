@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -185,9 +185,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dev/base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/run_new_task.html">Run your algorithm design task</a></li>
@@ -454,37 +454,42 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
 
-<span class="kn">import</span> <span class="nn">llm4ad</span>
-<span class="kn">from</span> <span class="nn">llm4ad.tools.profiler</span> <span class="kn">import</span> <span class="n">TensorboardProfiler</span>
-<span class="kn">from</span> <span class="nn">_obp_evaluate</span> <span class="kn">import</span> <span class="n">evaluate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">llm4ad</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.tools.profiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">TensorboardProfiler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">_obp_evaluate</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="1.-Implement-a-sampler">
 <h2>1. Implement a sampler<a class="headerlink" href="#1.-Implement-a-sampler" title="Link to this heading">#</a></h2>
-<p>The sampler defines the way to use local LLM or LLM API. You should create a new Sampler class by implementing <code class="docutils literal notranslate"><span class="pre">llm4ad.base.Sampler</span></code>. - You should implement “draw_sample” function, to let the package know how to get a LLM’s response by given a prompt. - If you want more acceleration (such as batch inference, multi-threading sampling) you can also override “draw_samples” function. - The following example shows a fake sampler, which returns a random function in the database.</p>
+<p>The sampler defines the way to use local LLM or LLM API. You should create a new Sampler class by implementing <code class="docutils literal notranslate"><span class="pre">llm4ad.base.Sampler</span></code>.</p>
+<ul class="simple">
+<li><p>You should implement “draw_sample” function, to let the package know how to get a LLM’s response by given a prompt.</p></li>
+<li><p>If you want more acceleration (such as batch inference, multi-threading sampling) you can also override “draw_samples” function.</p></li>
+<li><p>The following example shows a fake sampler, which returns a random function in the database.</p></li>
+</ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
 
-<span class="k">class</span> <span class="nc">FakeSampler</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Sampler</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FakeSampler</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">LLM</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;We select random functions from rand_function.pkl</span>
 <span class="sd">    This sampler can help you debug your method even if you don&#39;t have an LLM API / deployed local LLM.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/rand_function.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -493,10 +498,10 @@ document.write(`
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/py-llm4ad/example/online_bin_packing/data/rand_function.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_functions</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">draw_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">draw_samples</span><span class="p">(</span><span class="n">prompts</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">draw_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate an LLM response of the given prompt.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_functions</span><span class="p">)</span>
@@ -547,19 +552,19 @@ def priority(item: float, bins: np.ndarray) -&gt; np.ndarray:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">http.client</span>
-<span class="kn">import</span> <span class="nn">json</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">http.client</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 
-<span class="k">class</span> <span class="nc">MySampler</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Sampler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MySampler</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">LLM</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">draw_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">draw_samples</span><span class="p">(</span><span class="n">prompts</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">draw_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">api_endpoint</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -602,20 +607,25 @@ def priority(item: float, bins: np.ndarray) -&gt; np.ndarray:
 <section id="2.-Implement-an-evaluator">
 <h2>2. Implement an evaluator<a class="headerlink" href="#2.-Implement-an-evaluator" title="Link to this heading">#</a></h2>
 <p>The evaluator defines how to evaluate the generated heuristic function. You should create a new Evaluator class by implementing <code class="docutils literal notranslate"><span class="pre">llm4ad.base.Evaluator</span></code>. You should override “evaluate_program” function to specify. Return None if the function is invalid.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">llm4ad.base.Evaluator</span></code> class provide acceleration and safe evaluation methods. You can use them by simply setting respective arguments. The commonly used two argument are: - <code class="docutils literal notranslate"><span class="pre">use_numba_accelerate</span></code>: If set to True, we will wrap the heuristic function with <a class="reference external" href="mailto:'&#37;&#52;&#48;numba">‘<span>&#64;</span>numba</a>.jit(nopython=True)’. Please note that not all functions support numba.jit(), so use it appropriately. - <code class="docutils literal notranslate"><span class="pre">timeout_second</span></code>: Terminate the evaluation after timeout seconds. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the evaluator will wait until the
-evaluation finish.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">llm4ad.base.Evaluator</span></code> class provide acceleration and safe evaluation methods. You can use them by simply setting respective arguments. The commonly used two argument are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">use_numba_accelerate</span></code>: If set to True, we will wrap the heuristic function with <a class="reference external" href="mailto:'&#37;&#52;&#48;numba">‘<span>&#64;</span>numba</a>.jit(nopython=True)’. Please note that not all functions support numba.jit(), so use it appropriately.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout_second</span></code>: Terminate the evaluation after timeout seconds. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, the evaluator will wait until the evaluation finish.</p></li>
+</ul>
 <p>For more arguments, please refer to docstring in <code class="docutils literal notranslate"><span class="pre">algo.base.Evaluator</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OBPEvaluator</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Evaluator</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">OBPEvaluator</span><span class="p">(</span><span class="n">llm4ad</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Evaluation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluator for online bin packing problem.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">use_numba_accelerate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">timeout_seconds</span><span class="o">=</span><span class="mi">10</span>
+            <span class="n">timeout_seconds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">task_description</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">template_program</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
         <span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/weibull_train.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -624,7 +634,7 @@ evaluation finish.</p>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/py-llm4ad/example/online_bin_packing/data/weibull_train.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_bin_packing_or_train</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="s1">&#39;weibull_5k_train&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">evaluate_program</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">callable_func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_program</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">callable_func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate a given function. You can use compiled function (function_callable),</span>
 <span class="sd">        as well as the original function strings for evaluation.</span>
 <span class="sd">        Args:</span>
@@ -772,33 +782,37 @@ None
 <section id="4.-Choose-the-LLM-EPS-method-and-complete-the-config,-and-run">
 <h2>4. Choose the LLM-EPS method and complete the config, and run<a class="headerlink" href="#4.-Choose-the-LLM-EPS-method-and-complete-the-config,-and-run" title="Link to this heading">#</a></h2>
 <p>Our package support multiprocess running. However, the Colab backend has limited CPU support, so we set num_evlauators to 2.</p>
-<p>Common args in Config: - <code class="docutils literal notranslate"><span class="pre">num_samplers</span></code>: number of threads used in sampling. - <code class="docutils literal notranslate"><span class="pre">num_evaluators</span></code>: number of processes used in evaluation (supports using multi-core CPUs).</p>
+<p>Common args in Config:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">num_samplers</span></code>: number of threads used in sampling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_evaluators</span></code>: number of processes used in evaluation (supports using multi-core CPUs).</p></li>
+</ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_randsample</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">llm4ad.method.randsample</span> <span class="kn">import</span> <span class="n">RandSample</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_randsample</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.method.randsample</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandSample</span>
     <span class="n">profiler</span> <span class="o">=</span> <span class="n">TensorboardProfiler</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">randsample</span> <span class="o">=</span> <span class="n">RandSample</span><span class="p">(</span><span class="n">template_program</span><span class="p">,</span> <span class="n">sampler</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">profiler</span><span class="p">,</span> <span class="n">max_sample_nums</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">debug_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">randsample</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">run_hillclimb</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">llm4ad.method.hillclimb</span> <span class="kn">import</span> <span class="n">HillClimb</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_hillclimb</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.method.hillclimb</span><span class="w"> </span><span class="kn">import</span> <span class="n">HillClimb</span>
     <span class="n">profiler</span> <span class="o">=</span> <span class="n">TensorboardProfiler</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">hillclimb</span> <span class="o">=</span> <span class="n">HillClimb</span><span class="p">(</span><span class="n">template_program</span><span class="p">,</span> <span class="n">sampler</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">profiler</span><span class="p">,</span> <span class="n">max_sample_nums</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">hillclimb</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">run_funsearch</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">llm4ad.method.funsearch</span> <span class="kn">import</span> <span class="n">FunSearch</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_funsearch</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.method.funsearch</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunSearch</span>
     <span class="n">profiler</span> <span class="o">=</span> <span class="n">TensorboardProfiler</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">funsearch</span> <span class="o">=</span> <span class="n">FunSearch</span><span class="p">(</span><span class="n">template_program</span><span class="p">,</span> <span class="n">sampler</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">profiler</span><span class="p">,</span> <span class="n">max_sample_nums</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">funsearch</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">run_eoh</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_eoh</span><span class="p">():</span>
     <span class="c1"># Please note that you can simply pass the template program without function body, such as:</span>
     <span class="c1"># --------------------------------------------------------------------------------------------</span>
     <span class="c1"># import numpy as np</span>
@@ -814,7 +828,7 @@ None
     <span class="c1">#     pass</span>
     <span class="c1"># --------------------------------------------------------------------------------------------</span>
     <span class="c1"># This is because EoH can sample a valid code by sampling.</span>
-    <span class="kn">from</span> <span class="nn">llm4ad.method.eoh</span> <span class="kn">import</span> <span class="n">EoH</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.method.eoh</span><span class="w"> </span><span class="kn">import</span> <span class="n">EoH</span>
     <span class="n">profiler</span> <span class="o">=</span> <span class="n">TensorboardProfiler</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
     <span class="c1"># You can choose to add some task descriptions or not.</span>

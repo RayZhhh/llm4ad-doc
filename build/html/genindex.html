@@ -27,8 +27,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -181,9 +181,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="dev/base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="dev/run_new_task.html">Run your algorithm design task</a></li>
@@ -344,7 +344,9 @@ document.write(`
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#H"><strong>H</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
@@ -353,17 +355,33 @@ document.write(`
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="method/eoh.html#do_sample">_do_sample()</a>
+      <li><a href="method/eoh.html#adjust_pop_size">_adjust_pop_size()</a>
+</li>
+      <li><a href="method/eoh.html#continue_loop">_continue_loop()</a>
+</li>
+      <li><a href="method/moead.html#continue_sample">_continue_sample()</a>, <a href="method/nsga2.html#continue_sample">[1]</a>
+</li>
+      <li><a href="method/moead.html#do_sample">_do_sample()</a>, <a href="method/nsga2.html#do_sample">[1]</a>
 </li>
       <li><a href="method/hillclimb.html#get_prompt">_get_prompt()</a>, <a href="method/randsample.html#get_prompt">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="method/hillclimb.html#init">_init()</a>
 </li>
-      <li><a href="method/eoh.html#init_population">_init_population()</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="method/moead.html#init_population">_init_population()</a>, <a href="method/nsga2.html#init_population">[1]</a>
 </li>
-      <li><a href="method/eoh.html#sample_evaluate_register">_sample_evaluate_register()</a>, <a href="method/funsearch.html#sample_evaluate_register">[1]</a>, <a href="method/hillclimb.html#sample_evaluate_register">[2]</a>, <a href="method/randsample.html#sample_evaluate_register">[3]</a>
+      <li><a href="method/eoh.html#iteratively_init_population">_iteratively_init_population()</a>
+</li>
+      <li><a href="method/eoh.html#iteratively_use_eoh_operator">_iteratively_use_eoh_operator()</a>
+</li>
+      <li><a href="method/eoh.html#multi_threaded_sampling">_multi_threaded_sampling()</a>
+</li>
+      <li><a href="method/eoh.html#sample_evaluate_register">_sample_evaluate_register()</a>, <a href="method/funsearch.html#sample_evaluate_register">[1]</a>, <a href="method/hillclimb.html#sample_evaluate_register">[2]</a>, <a href="method/meoh.html#sample_evaluate_register">[3]</a>, <a href="method/moead.html#sample_evaluate_register">[4]</a>, <a href="method/nsga2.html#sample_evaluate_register">[5]</a>, <a href="method/randsample.html#sample_evaluate_register">[6]</a>
+</li>
+      <li><a href="method/moead.html#thread_do_evolutionary_operator">_thread_do_evolutionary_operator()</a>, <a href="method/nsga2.html#thread_do_evolutionary_operator">[1]</a>
+</li>
+      <li><a href="method/moead.html#thread_init_population">_thread_init_population()</a>, <a href="method/nsga2.html#thread_init_population">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -375,7 +393,7 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dev/base/evaluate.html#Evaluator">Evaluator (built-in class)</a>
+      <li><a href="dev/base/evaluate.html#Evaluation">Evaluation (built-in class)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -400,10 +418,32 @@ document.write(`
   </ul></td>
 </tr></table>
 
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev/base/sample.html#LLM">LLM (built-in class)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="method/meoh.html#MEoH">MEoH (built-in class)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dev/base/modify_code.html#ModifyCode">ModifyCode (built-in class)</a>
+</li>
+      <li><a href="method/moead.html#MOEAD">MOEAD (built-in class)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="method/nsga2.html#NSGA2">NSGA2 (built-in class)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -423,7 +463,7 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="method/eoh.html#run">run()</a>, <a href="method/funsearch.html#run">[1]</a>, <a href="method/hillclimb.html#run">[2]</a>, <a href="method/randsample.html#run">[3]</a>
+      <li><a href="method/eoh.html#run">run()</a>, <a href="method/funsearch.html#run">[1]</a>, <a href="method/hillclimb.html#run">[2]</a>, <a href="method/meoh.html#run">[3]</a>, <a href="method/moead.html#run">[4]</a>, <a href="method/nsga2.html#run">[5]</a>, <a href="method/randsample.html#run">[6]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -431,12 +471,10 @@ document.write(`
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dev/base/sample.html#Sampler">Sampler (built-in class)</a>
+      <li><a href="dev/base/sample.html#SamplerTrimmer">SamplerTrimmer (built-in class)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dev/base/sample.html#SamplerTrimmer">SamplerTrimmer (built-in class)</a>
-</li>
       <li><a href="dev/base/evaluate.html#SecureEvaluator">SecureEvaluator (built-in class)</a>
 </li>
   </ul></td>

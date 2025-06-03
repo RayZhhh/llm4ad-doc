@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -182,9 +182,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dev/base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/run_new_task.html">Run your algorithm design task</a></li>
@@ -425,12 +425,16 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#private-methods">Private Methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init_population"><code class="docutils literal notranslate"><span class="pre">_init_population()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do_sample"><code class="docutils literal notranslate"><span class="pre">_do_sample()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratively_use_eoh_operator"><code class="docutils literal notranslate"><span class="pre">_iteratively_use_eoh_operator()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratively_init_population"><code class="docutils literal notranslate"><span class="pre">_iteratively_init_population()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample_evaluate_register"><code class="docutils literal notranslate"><span class="pre">_sample_evaluate_register()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjust_pop_size"><code class="docutils literal notranslate"><span class="pre">_adjust_pop_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue_loop"><code class="docutils literal notranslate"><span class="pre">_continue_loop()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi_threaded_sampling"><code class="docutils literal notranslate"><span class="pre">_multi_threaded_sampling()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-parameters">Configuration Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
 </ul>
             </nav>
@@ -457,31 +461,22 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EoH</span></span><a class="headerlink" href="#EoH" title="Link to this definition">#</a></dt>
 <dd><p class="rubric">Parameters</p>
 <ul class="simple">
-<li><p><strong>task_description</strong> (str): A brief description of the algorithm design task.</p></li>
-<li><p><strong>template_program</strong> (str | Program): The seed program as the initial function. Should be executable and can include a ‘pass’ statement.</p></li>
-<li><p><strong>sampler</strong> (Sampler): An instance of <cite>alevo.base.Sampler</cite> for querying the LLM.</p></li>
-<li><p><strong>evaluator</strong> (Evaluator): An instance of <cite>alevo.base.Evaluator</cite> to calculate the score of generated functions.</p></li>
-<li><p><strong>profiler</strong> (EoHProfiler, optional): An instance of <cite>alevo.method.eoh.EoHProfiler</cite>. Pass <cite>None</cite> if profiling is not needed.</p></li>
-<li><p><strong>config</strong> (EoHConfig, optional): An instance of <cite>alevo.method.eoh.config.EoHConfig</cite>.</p></li>
-<li><p><strong>max_generations</strong> (int | None, optional): Maximum number of generations to evolve. Defaults to 10.</p></li>
-<li><p><strong>max_sample_nums</strong> (int | None, optional): Maximum number of samples to evaluate. Defaults to <cite>None</cite>.</p></li>
-<li><p><strong>resume_mode</strong> (bool, optional): If set to <cite>True</cite>, skips the initial evaluation of the template program. Defaults to <cite>False</cite>.</p></li>
-<li><p><strong>initial_sample_num</strong> (int | None, optional): Initial count of samples evaluated. Defaults to <cite>None</cite>.</p></li>
-<li><p><strong>debug_mode</strong> (bool, optional): If set to <cite>True</cite>, detailed information will be printed. Defaults to <cite>False</cite>.</p></li>
-<li><p><strong>multi_thread_or_process_eval</strong> (str, optional): Use ‘thread’ or ‘process’ for evaluation. Defaults to ‘thread’.</p></li>
-<li><p><strong>valid_only</strong> (bool, optional): If set to <cite>True</cite>, only valid functions are registered. Defaults to <cite>False</cite>.</p></li>
-<li><p><strong>kwargs</strong>: Additional arguments passed to <cite>alevo.base.SecureEvaluator</cite>.</p></li>
+<li><p><strong>llm</strong> (llm4ad.base.LLM): An instance of ‘llm4ad.base.LLM’, which provides the way to query LLM.</p></li>
+<li><p><strong>evaluation</strong> (llm4ad.base.Evaluation): An instance of ‘llm4ad.base.Evaluation’, which defines the way to calculate the score of a generated function.</p></li>
+<li><p><strong>profiler</strong> (llm4ad.method.eoh.EoHProfiler | None): An instance of ‘llm4ad.method.eoh.EoHProfiler’. If not needed, pass ‘None’.</p></li>
+<li><p><strong>max_generations</strong> (int | None): Terminate after evolving ‘max_generations’ generations or reaching ‘max_sample_nums’. Pass ‘None’ to disable.</p></li>
+<li><p><strong>max_sample_nums</strong> (int | None): Terminate after evaluating ‘max_sample_nums’ functions (valid or not) or reaching ‘max_generations’. Pass ‘None’ to disable.</p></li>
+<li><p><strong>pop_size</strong> (int | None): Population size. If ‘None’, EoH will auto-adjust this parameter.</p></li>
+<li><p><strong>selection_num</strong> (int): Number of selected individuals during crossover.</p></li>
+<li><p><strong>use_e2_operator</strong> (bool): Whether to use the e2 operator.</p></li>
+<li><p><strong>use_m1_operator</strong> (bool): Whether to use the m1 operator.</p></li>
+<li><p><strong>use_m2_operator</strong> (bool): Whether to use the m2 operator.</p></li>
+<li><p><strong>resume_mode</strong> (bool): In resume_mode, ‘randsample’ skips evaluating ‘template_program’ and initialization.</p></li>
+<li><p><strong>debug_mode</strong> (bool): If True, detailed information will be printed.</p></li>
+<li><p><strong>multi_thread_or_process_eval</strong> (str): Use ‘thread’ (ThreadPoolExecutor) or ‘process’ (ProcessPoolExecutor) for multi-core CPU evaluation. Default is ‘thread’. Note: If ‘safe_evaluate=False’ and this is ‘thread’, multi-core CPU won’t be utilized.</p></li>
+<li><p><strong>kwargs</strong> (dict): Additional args passed to ‘llm4ad.base.SecureEvaluation’, such as ‘fork_proc’.</p></li>
 </ul>
-</dd></dl>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>task_description</strong> An empty task description is also supported in EoH. You can pass a empty string: ‘’ to this parameter. You may also include this information in the doc-string of the template program.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>template_program</strong> Different from other methods, the template program in EoH need not to be valid (obtain a valid score during evaluation). You can simply give a “pass” statement under the function signature.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">your_algo</span><span class="p">(</span><span class="n">arg1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">your_algo</span><span class="p">(</span><span class="n">arg1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Description about this function.</span>
 <span class="sd">    Args:</span>
 <span class="sd">        arg1: xxx.</span>
@@ -492,7 +487,8 @@ document.write(`
     <span class="k">pass</span>
 </pre></div>
 </div>
-</div>
+</dd></dl>
+
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h2>
@@ -506,41 +502,83 @@ document.write(`
 <section id="private-methods">
 <h2>Private Methods<a class="headerlink" href="#private-methods" title="Link to this heading">#</a></h2>
 <dl class="py method">
-<dt class="sig sig-object py" id="init_population">
-<span class="sig-name descname"><span class="pre">_init_population</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#init_population" title="Link to this definition">#</a></dt>
-<dd><p>Initializes the population by repeatedly sampling and evaluating functions.</p>
+<dt class="sig sig-object py" id="iteratively_use_eoh_operator">
+<span class="sig-name descname"><span class="pre">_iteratively_use_eoh_operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iteratively_use_eoh_operator" title="Link to this definition">#</a></dt>
+<dd><p>Performs the core evolutionary loop using E1, E2, M1, and M2 operators (when enabled) to generate new candidate functions.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="do_sample">
-<span class="sig-name descname"><span class="pre">_do_sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#do_sample" title="Link to this definition">#</a></dt>
-<dd><p>Executes the evolutionary sampling and evaluation process in multiple threads.</p>
+<dt class="sig sig-object py" id="iteratively_init_population">
+<span class="sig-name descname"><span class="pre">_iteratively_init_population</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iteratively_init_population" title="Link to this definition">#</a></dt>
+<dd><p>Initializes the population by repeatedly sampling and evaluating functions using the I1 operator until reaching either the population size or <cite>_initial_sample_nums_max</cite>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sample_evaluate_register">
-<span class="sig-name descname"><span class="pre">_sample_evaluate_register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_evaluate_register" title="Link to this definition">#</a></dt>
-<dd><p>Samples a function using the provided prompt, evaluates it, and registers it with the population and profiler.</p>
+<span class="sig-name descname"><span class="pre">_sample_evaluate_register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_evaluate_register" title="Link to this definition">#</a></dt>
+<dd><p>Samples a function using the provided prompt, evaluates it, and registers it with the population and profiler. Records timing and performance metrics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adjust_pop_size">
+<span class="sig-name descname"><span class="pre">_adjust_pop_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adjust_pop_size" title="Link to this definition">#</a></dt>
+<dd><p>Automatically adjusts the population size based on <cite>max_sample_nums</cite> if no explicit population size was provided.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="continue_loop">
+<span class="sig-name descname"><span class="pre">_continue_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#continue_loop" title="Link to this definition">#</a></dt>
+<dd><p>Determines whether the evolutionary process should continue based on termination conditions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="multi_threaded_sampling">
+<span class="sig-name descname"><span class="pre">_multi_threaded_sampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#multi_threaded_sampling" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given function (either initialization or evolution) using multiple threads for parallel sampling.</p>
 </dd></dl>
 
 </section>
 <section id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>_task_description_str</strong> (str): The description of the task to be solved.</p></li>
-<li><p><strong>_template_program_str</strong> (str): The string representation of the template program.</p></li>
-<li><p><strong>_function_to_evolve</strong> (Function): The function that will be evolved.</p></li>
-<li><p><strong>_population</strong> (Population): The population managing the current set of functions.</p></li>
-<li><p><strong>_sampler</strong> (EoHSampler): The sampler instance used for sampling.</p></li>
-<li><p><strong>_evaluator</strong> (Evaluator): The evaluator instance used for evaluation.</p></li>
-<li><p><strong>_profiler</strong> (EoHProfiler): The profiler instance, if used.</p></li>
-<li><p><strong>_tot_sample_nums</strong> (int): Total number of samples evaluated.</p></li>
+<li><p><strong>_template_program_str</strong> (str): String representation of the template program to evolve</p></li>
+<li><p><strong>_task_description_str</strong> (str): Description of the optimization task</p></li>
+<li><p><strong>_function_to_evolve</strong> (Function): The base function being evolved</p></li>
+<li><p><strong>_function_to_evolve_name</strong> (str): Name of the function being evolved</p></li>
+<li><p><strong>_template_program</strong> (Program): Parsed template program structure</p></li>
+<li><p><strong>_population</strong> (Population): Manages current population of candidate functions</p></li>
+<li><p><strong>_sampler</strong> (EoHSampler): Handles LLM-based function sampling</p></li>
+<li><p><strong>_evaluator</strong> (SecureEvaluator): Evaluates function performance</p></li>
+<li><p><strong>_profiler</strong> (EoHProfiler): Optional profiler for tracking evolution metrics</p></li>
+<li><p><strong>_tot_sample_nums</strong> (int): Total number of samples evaluated</p></li>
+<li><p><strong>_initial_sample_nums_max</strong> (int): Maximum samples for initialization phase</p></li>
+<li><p><strong>_evaluation_executor</strong> (Executor): Thread/process pool for parallel evaluation</p></li>
+</ul>
+</section>
+<section id="configuration-parameters">
+<h2>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>_max_generations</strong> (Optional[int]): Maximum generations to evolve</p></li>
+<li><p><strong>_max_sample_nums</strong> (Optional[int]): Maximum total samples to evaluate</p></li>
+<li><p><strong>_pop_size</strong> (int): Population size</p></li>
+<li><p><strong>_selection_num</strong> (int): Number of parents for crossover</p></li>
+<li><p><strong>_use_e2_operator</strong> (bool): Whether to use E2 operator</p></li>
+<li><p><strong>_use_m1_operator</strong> (bool): Whether to use M1 operator</p></li>
+<li><p><strong>_use_m2_operator</strong> (bool): Whether to use M2 operator</p></li>
+<li><p><strong>_num_samplers</strong> (int): Number of parallel samplers</p></li>
+<li><p><strong>_num_evaluators</strong> (int): Number of parallel evaluators</p></li>
+<li><p><strong>_resume_mode</strong> (bool): Whether to resume from existing population</p></li>
+<li><p><strong>_debug_mode</strong> (bool): Enable debug output</p></li>
+<li><p><strong>_multi_thread_or_process_eval</strong> (str): ‘thread’ or ‘process’ for evaluation</p></li>
 </ul>
 </section>
 <section id="exceptions">
 <h2>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>RuntimeError</strong>: Raised if the specified conditions for evolution are not met.</p></li>
+<li><p><strong>AssertionError</strong>: Raised if invalid configuration parameters are provided</p></li>
+<li><p><strong>RuntimeError</strong>: Raised if initialization fails to produce sufficient valid functions</p></li>
+<li><p><strong>KeyboardInterrupt</strong>: Catches user interrupt during evolution</p></li>
+<li><p><strong>Exception</strong>: General exceptions during sampling/evaluation (continues unless debug_mode)</p></li>
 </ul>
 </section>
 </section>
@@ -600,12 +638,16 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#private-methods">Private Methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#init_population"><code class="docutils literal notranslate"><span class="pre">_init_population()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do_sample"><code class="docutils literal notranslate"><span class="pre">_do_sample()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratively_use_eoh_operator"><code class="docutils literal notranslate"><span class="pre">_iteratively_use_eoh_operator()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratively_init_population"><code class="docutils literal notranslate"><span class="pre">_iteratively_init_population()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample_evaluate_register"><code class="docutils literal notranslate"><span class="pre">_sample_evaluate_register()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjust_pop_size"><code class="docutils literal notranslate"><span class="pre">_adjust_pop_size()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue_loop"><code class="docutils literal notranslate"><span class="pre">_continue_loop()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi_threaded_sampling"><code class="docutils literal notranslate"><span class="pre">_multi_threaded_sampling()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-parameters">Configuration Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">Exceptions</a></li>
 </ul>
   </nav></div>

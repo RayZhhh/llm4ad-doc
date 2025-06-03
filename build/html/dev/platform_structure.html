@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -182,9 +182,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="run_new_task.html">Run your algorithm design task</a></li>
@@ -439,15 +439,15 @@ document.write(`
 <section id="project-structure">
 <h2>🛠️ Project structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h2>
 <p>|—-<strong>[llm4ad]</strong></p>
-<p>        |—-<strong>[base]</strong> basic package for modifying code, secure evaluation, profiling experiments.</p>
+<p>        |—-<strong>[base]</strong> basic package for modifying code, secure evaluation.</p>
 <p>                |—-<code class="docutils literal notranslate"><span class="pre">code.py</span></code> implements two classes, Function and Program, to record the evolved heuristic.</p>
 <p>                |—-<code class="docutils literal notranslate"><span class="pre">evaluate.py</span></code> implements evaluate interface for user, and implements the secure evaluator.</p>
 <p>                |—-<code class="docutils literal notranslate"><span class="pre">modify_code.py</span></code> implements methods two modify heuristic’s code using ast.</p>
 <p>                |—-<code class="docutils literal notranslate"><span class="pre">sample.py</span></code> implements sampler interface for the user, and also response content trimmer.</p>
 <p>        |—-<strong>[method]</strong> package for implementation classes of various LLM-EPS methods.</p>
-<p>        |—-<strong>[tool]</strong> package for predefined LLM interfaces.</p>
+<p>        |—-<strong>[tool]</strong> package for LLM interfaces and profiler.</p>
 <p>                |—-<strong>[llm]</strong> package for examples to use local LLMs, and use API interfaces.</p>
-<p>                |—-<strong>[profiler]</strong> package for base implementaions of Tensorboard and WandB profiler (logger).</p>
+<p>                |—-<strong>[profiler]</strong> package for base implementations of Tensorboard and WandB profiler (logger).</p>
 <p>        |—-<strong>[task]</strong> package for AHD task examples.</p>
 <p>        |—-<strong>[gui]</strong> user interfaces.</p>
 </section>

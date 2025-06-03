@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -182,9 +182,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dev/base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev/base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/run_new_task.html">Run your algorithm design task</a></li>
@@ -443,10 +443,10 @@ document.write(`
                   
   <section id="funsearch">
 <h1>FunSearch<a class="headerlink" href="#funsearch" title="Link to this heading">#</a></h1>
-<p>The <cite>FunSearch</cite> class implements a function search algorithm to optimize a given program using sampling and evaluation.</p>
+<p>The <cite>FunSearch</cite> class implements an evolutionary function search algorithm that optimizes a given program through iterative sampling and evaluation using Large Language Models (LLMs). This class manages the complete optimization pipeline including prompt generation, parallel sampling, evaluation, and database registration.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
-<p>To use the <cite>FunSearch</cite> class, initialize it with the required parameters and call the <cite>run</cite> method to start the optimization process.</p>
+<p>To use <cite>FunSearch</cite>, initialize it with the required components (LLM interface, evaluator, etc.) and call the <cite>run()</cite> method to start the optimization process. The algorithm will automatically handle parallel sampling and evaluation.</p>
 </section>
 <section id="constructor">
 <h2>Constructor<a class="headerlink" href="#constructor" title="Link to this heading">#</a></h2>
@@ -455,24 +455,23 @@ document.write(`
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FunSearch</span></span><a class="headerlink" href="#FunSearch" title="Link to this definition">#</a></dt>
 <dd><p class="rubric">Parameters</p>
 <ul class="simple">
-<li><p><strong>template_program</strong> (str): The seed program as the initial function of the run. The program should be executable and include necessary imports and definitions.</p></li>
-<li><p><strong>sampler</strong> (Sampler): An instance of <cite>alevo.base.Sampler</cite> for querying the LLM.</p></li>
-<li><p><strong>evaluator</strong> (Evaluator): An instance of <cite>alevo.base.Evaluator</cite> to calculate the score of the generated function.</p></li>
-<li><p><strong>profiler</strong> (FunSearchProfiler, optional): An instance of <cite>alevo.method.funsearch.FunSearchProfiler</cite>. Pass <cite>None</cite> if profiling is not needed.</p></li>
-<li><p><strong>config</strong> (ProgramsDatabaseConfig, optional): An instance of <cite>alevo.method.funsearch.config.ProgramDatabaseConfig</cite>. Defaults to a new instance.</p></li>
-<li><p><strong>max_sample_nums</strong> (int, optional): Maximum number of functions to evaluate. Defaults to 20.</p></li>
-<li><p><strong>resume_mode</strong> (bool, optional): If set to <cite>True</cite>, skips the initial evaluation of the template program. Defaults to <cite>False</cite>.</p></li>
-<li><p><strong>debug_mode</strong> (bool, optional): If set to <cite>True</cite>, detailed information will be printed. Defaults to <cite>False</cite>.</p></li>
-<li><p><strong>multi_thread_or_process_eval</strong> (str): Use ‘thread’ or ‘process’ for evaluation. Defaults to ‘thread’.</p></li>
-<li><p><strong>samples_per_prompt</strong> (int, optional): Number of samples to generate per prompt. Defaults to 4.</p></li>
-<li><p><strong>valid_only</strong> (bool, optional): If set to <cite>True</cite>, only valid functions are registered. Defaults to <cite>False</cite>.</p></li>
-<li><p><strong>kwargs</strong>: Additional arguments passed to <cite>alevo.base.SecureEvaluator</cite>.</p></li>
+<li><p><strong>llm</strong> (LLM): An instance of <cite>llm4ad.base.LLM</cite> for querying the LLM.</p></li>
+<li><p><strong>evaluation</strong> (Evaluation): An instance of <cite>llm4ad.base.Evaluation</cite> defining how to score generated functions.</p></li>
+<li><p><strong>profiler</strong> (ProfilerBase, optional): Profiling instance. Pass <cite>None</cite> to disable profiling.</p></li>
+<li><p><strong>num_samplers</strong> (int): Number of parallel samplers. Defaults to 4.</p></li>
+<li><p><strong>num_evaluators</strong> (int): Number of parallel evaluators. Defaults to 4.</p></li>
+<li><p><strong>samples_per_prompt</strong> (int): Samples generated per prompt. Defaults to 4.</p></li>
+<li><p><strong>max_sample_nums</strong> (int, optional): Maximum functions to evaluate. Defaults to 20.</p></li>
+<li><p><strong>resume_mode</strong> (bool): Skip initial template evaluation if True. Defaults to False.</p></li>
+<li><p><strong>debug_mode</strong> (bool): Enable detailed debug output if True. Defaults to False.</p></li>
+<li><p><strong>multi_thread_or_process_eval</strong> (str): Use ‘thread’ or ‘process’ for parallel evaluation. Defaults to ‘thread’.</p></li>
+<li><p><strong>kwargs</strong>: Additional arguments for <cite>SecureEvaluator</cite>.</p></li>
 </ul>
 </dd></dl>
 
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><strong>template_program</strong> The template program in must be a valid algorithm (obtain a valid score during evaluation).</p>
+<p>The template program (provided via the <cite>evaluation</cite> parameter) must be a fully executable function that returns a valid score during initial evaluation.</p>
 </div>
 </section>
 <section id="methods">
@@ -496,25 +495,21 @@ document.write(`
 <section id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>_template_program_str</strong> (str): The string representation of the template program.</p></li>
-<li><p><strong>_max_sample_nums</strong> (int | None): The maximum number of samples to evaluate.</p></li>
-<li><p><strong>_debug_mode</strong> (bool): Indicates if debug mode is enabled.</p></li>
-<li><p><strong>_resume_mode</strong> (bool): Indicates if resume mode is enabled.</p></li>
-<li><p><strong>_function_to_evolve</strong> (Function): The function that will be evolved.</p></li>
-<li><p><strong>_database</strong> (ProgramsDatabase): The database for managing program instances.</p></li>
-<li><p><strong>_sampler</strong> (Sampler): The sampler instance used for sampling.</p></li>
-<li><p><strong>_evaluator</strong> (Evaluator): The evaluator instance used for evaluation.</p></li>
-<li><p><strong>_profiler</strong> (FunSearchProfiler): The profiler instance, if used.</p></li>
-<li><p><strong>_samples_per_prompt</strong> (int): Number of samples to generate per prompt.</p></li>
-<li><p><strong>_tot_sample_nums</strong> (int): Total number of samples evaluated.</p></li>
-<li><p><strong>_evaluation_executor</strong> (concurrent.futures.Executor): The executor for parallel evaluation.</p></li>
-<li><p><strong>_sampler_threads</strong> (List[Thread]): The list of threads used for sampling.</p></li>
+<li><p><strong>_template_program_str</strong>: Original template program string</p></li>
+<li><p><strong>_function_to_evolve</strong>: Function object being optimized</p></li>
+<li><p><strong>_database</strong>: ProgramsDatabase instance storing candidates</p></li>
+<li><p><strong>_sampler</strong>: SampleTrimmer for LLM interactions</p></li>
+<li><p><strong>_evaluator</strong>: SecureEvaluator for scoring functions</p></li>
+<li><p><strong>_profiler</strong>: Performance tracking instance</p></li>
+<li><p><strong>_evaluation_executor</strong>: Thread/Process pool for parallel eval</p></li>
+<li><p><strong>_sampler_threads</strong>: List of active sampling threads</p></li>
+<li><p><strong>_tot_sample_nums</strong>: Total samples evaluated so far</p></li>
 </ul>
 </section>
 <section id="exceptions">
 <h2>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>RuntimeError</strong>: Raised if the score of the template function is <cite>None</cite>.</p></li>
+<li><p><strong>RuntimeError</strong>: Raised if template program evaluation fails (score is None)</p></li>
 </ul>
 </section>
 </section>

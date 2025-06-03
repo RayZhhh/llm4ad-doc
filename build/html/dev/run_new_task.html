@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Specifying your LLM sampler" href="llm.html" />
-    <link rel="prev" title="Sampler and SamplerTrimmer" href="base_tutorial/tut_sample.html" />
+    <link rel="prev" title="LLM and SampleTrimmer" href="base_tutorial/tut_sample.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,9 +182,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Run your algorithm design task</a></li>
@@ -415,9 +415,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-llm">1. Prepare a <cite>LLM</cite></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-template-program">2. Prepare a template program</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluator">3. Prepare an <cite>Evaluator</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluation">3. Prepare an <cite>Evaluation</cite></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-evaluator-class">Initialization of the Evaluator class</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-evaluate-program-function">Implementation of the evaluate_program function</a></li>
 </ul>
@@ -442,19 +442,19 @@ document.write(`
 <a class="reference internal image-reference" href="../_images/pipeline.png"><img alt="pipeline" src="../_images/pipeline.png" style="width: 100%;" />
 </a>
 </figure>
-<section id="prepare-a-sampler">
-<h2>1. Prepare a <cite>Sampler</cite><a class="headerlink" href="#prepare-a-sampler" title="Link to this heading">#</a></h2>
+<section id="prepare-a-llm">
+<h2>1. Prepare a <cite>LLM</cite><a class="headerlink" href="#prepare-a-llm" title="Link to this heading">#</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you want to deploy your own LLM or specify the way to interact with LLMs, please see <a class="reference internal" href="llm.html"><span class="doc">Specifying your LLM sampler</span></a> for reference. This tutorial only demonstrates using OpenAI api.</p>
 </div>
 <p>Prepare an ‘api_key’ and specify the LLM model to be used. Please note that the ‘base_url’, ‘api_key’, ‘model’ arguments are required.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">llm4ad</span>
-<span class="kn">from</span> <span class="nn">llm4ad.tools.llm.llm_api_openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">llm4ad</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.tools.llm.llm_api_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIAPI</span>
 
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAIAPI</span><span class="p">(</span>
     <span class="n">base_url</span><span class="o">=</span><span class="s1">&#39;a.b.c&#39;</span><span class="p">,</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;sk-abcwldfjlwhf23rwiduf2ienfeijo23f0isdhfnkwn&#39;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;sk-yourapikeyhere&#39;</span><span class="p">,</span>
     <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gpt-4o&#39;</span><span class="p">,</span>
     <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span>
 <span class="p">)</span>
@@ -497,11 +497,11 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="prepare-an-evaluator">
-<h2>3. Prepare an <cite>Evaluator</cite><a class="headerlink" href="#prepare-an-evaluator" title="Link to this heading">#</a></h2>
+<section id="prepare-an-evaluation">
+<h2>3. Prepare an <cite>Evaluation</cite><a class="headerlink" href="#prepare-an-evaluation" title="Link to this heading">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <cite>Evaluator</cite> class determines how to assess the score of a given algorithm under specific settings and tasks, which is typically task-dependent. Therefore, we may design a new <cite>Evaluator</cite> for a specified problem. The Evaluator class (an abstract class) is a user interface. We should define a child class of <cite>Evaluator</cite> (which extends the <cite>Evaluator</cite> class).</p>
+<p>The <cite>Evaluation</cite> class determines how to evaluate the score of a given algorithm, which is typically task-dependent. Therefore, we may design a new <cite>Evaluation</cite> for a specified problem. The Evaluator class (an abstract class) is a user interface. We should define a child class of <cite>Evaluation</cite> (which extends the <cite>Evaluation</cite> class).</p>
 </div>
 <section id="initialization-of-the-evaluator-class">
 <h3>Initialization of the Evaluator class<a class="headerlink" href="#initialization-of-the-evaluator-class" title="Link to this heading">#</a></h3>
@@ -512,11 +512,11 @@ document.write(`
 <p>The user should override the <cite>evaluate_program</cite> function in the Evaluator class (where the <cite>evaluate_program</cite> function remains unimplemented). The evaluate_program function evaluates the algorithm and gives a score. If you think the algorithm is infeasible/invalid/illegal, the user should return <cite>None</cite>. Otherwise, an int/float value or a “comparable” value (which may implement <cite>&gt;</cite> operator between them) is desired.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If you think the algorithm to be evaluated is infeasible/invalid/illegal, the user should return <cite>None</cite>. Otherwise, an int/float value or a “comparable” value (which may implement <cite>&gt;</cite> operator between them) is desired.</p>
+<p>If the algorithm to be evaluated is infeasible/invalid/illegal, please return <cite>None</cite>, or raise an Exception. Otherwise, an int/float value or a “comparable” value (which may implement <cite>&gt;</cite> operator between them) is desired.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Here you don’t have to concern the evaluation time, as we will terminate the evaluation automatically in the backend if you have set <cite>timeout_second</cite> parameter.</p>
+<p>The <cite>SecureEvaluator</cite> will automatically terminate evaluation once the <cite>timeout_second</cite> is set. The fitness (objective) score of that algorithm will be set as <cite>None</cite> if timeout happens.</p>
 </div>
 <p>The first argument of the function is a <cite>program_str</cite>, which is a <cite>str</cite> type of the algorithm to be evaluated. If you set the <cite>use_numba_accelerate</cite> or similar settings to <cite>True</cite> in the initialization, you will obtain a <cite>str</cite> typed function that has been modified. This <cite>str</cite> is provided to let you:</p>
 <ul class="simple">
@@ -524,10 +524,10 @@ document.write(`
 <li><p>Consider the length or other features of the code.</p></li>
 <li><p>Other usages such as calculating the “novelty” of the code or checking if the code has been evaluated before.</p></li>
 </ul>
-<p>The second argument of the function is a <cite>callable_func</cite>, which is an executable object. You can simply call (invoke) it by passing arguments to <cite>callable_func</cite>, such as <cite>callable_function(arg0, arg1)</cite>.</p>
-<p>Feel free to use the platform-provided evaluator for the Online Bin Packing problem.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">llm4ad</span>
-<span class="n">evaluator</span> <span class="o">=</span> <span class="n">llm4ad</span><span class="o">.</span><span class="n">problem</span><span class="o">.</span><span class="n">online_bin_packing</span><span class="o">.</span><span class="n">OBPEvaluator</span><span class="p">()</span>
+<p>The second argument of the function is a <cite>callable_func</cite>, which is an callable object. You can simply call (invoke) it by passing arguments to <cite>callable_func</cite>, such as <cite>callable_function(arg0, arg1)</cite>.</p>
+<p>LLM4AD has also encapsulated varying Evaluation instances for different tasks.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">llm4ad</span>
+<span class="n">evaluation</span> <span class="o">=</span> <span class="n">llm4ad</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">optimization</span><span class="o">.</span><span class="n">online_bin_packing</span><span class="o">.</span><span class="n">OBPEvaluation</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -539,7 +539,7 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Please note the type of the profiler may depend on the method you use. Assuming that we are using EoH.</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.method.eoh.profiler</span> <span class="kn">import</span> <span class="n">EoHWandbProfiler</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.method.eoh.profiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">EoHWandbProfiler</span>
 
 <span class="n">profiler</span> <span class="o">=</span> <span class="n">EoHWandbProfiler</span><span class="p">(</span><span class="n">wandb_project_name</span><span class="o">=</span><span class="s1">&#39;obp&#39;</span><span class="p">,</span>
                             <span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;./logs/eoh_obp&#39;</span><span class="p">,</span>
@@ -559,14 +559,14 @@ document.write(`
 <p class="admonition-title">Caution</p>
 <p>We use multi-threading for sampler, and multi-processing for evaluator. This means that we are using multi-core CPU during evaluation. Please kindly set these parameters to ensure safety.</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.method.eoh</span> <span class="kn">import</span> <span class="n">EoH</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llm4ad.method.eoh</span><span class="w"> </span><span class="kn">import</span> <span class="n">EoH</span>
 
 <span class="n">eoh</span> <span class="o">=</span> <span class="n">EoH</span><span class="p">(</span>
-    <span class="n">template_program</span><span class="o">=</span><span class="n">template</span><span class="p">,</span>
-    <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
+    <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
     <span class="n">profiler</span><span class="o">=</span><span class="n">profiler</span><span class="p">,</span>
-    <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+    <span class="n">evaluation</span><span class="o">=</span><span class="n">evaluation</span><span class="p">,</span>
     <span class="n">max_sample_nums</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">max_generations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">num_samplers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
     <span class="n">num_evaluators</span><span class="o">=</span><span class="mi">4</span>
 <span class="p">)</span>
@@ -593,7 +593,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Sampler and SamplerTrimmer</p>
+        <p class="prev-next-title">LLM and SampleTrimmer</p>
       </div>
     </a>
     <a class="right-next"
@@ -621,9 +621,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-sampler">1. Prepare a <cite>Sampler</cite></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-llm">1. Prepare a <cite>LLM</cite></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-template-program">2. Prepare a template program</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluator">3. Prepare an <cite>Evaluator</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-an-evaluation">3. Prepare an <cite>Evaluation</cite></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-of-the-evaluator-class">Initialization of the Evaluator class</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-evaluate-program-function">Implementation of the evaluate_program function</a></li>
 </ul>

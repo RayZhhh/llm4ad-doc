@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -182,9 +182,9 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../base_tutorial/index.html">Base package tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_code.html">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../base_tutorial/tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../run_new_task.html">Run your algorithm design task</a></li>
@@ -416,7 +416,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-definitions">Class Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Sampler"><code class="docutils literal notranslate"><span class="pre">Sampler</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#LLM"><code class="docutils literal notranslate"><span class="pre">LLM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#SamplerTrimmer"><code class="docutils literal notranslate"><span class="pre">SamplerTrimmer</span></code></a></li>
 </ul>
 </li>
@@ -436,8 +436,8 @@ document.write(`
 <section id="class-definitions">
 <h2>Class Definitions<a class="headerlink" href="#class-definitions" title="Link to this heading">#</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="Sampler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sampler</span></span><a class="headerlink" href="#Sampler" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="LLM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LLM</span></span><a class="headerlink" href="#LLM" title="Link to this definition">#</a></dt>
 <dd><p>An abstract class designed for predicting continuations of provided source code using a language model.</p>
 <section id="constructor-parameters">
 <h3>Constructor Parameters<a class="headerlink" href="#constructor-parameters" title="Link to this heading">#</a></h3>
@@ -455,7 +455,7 @@ document.write(`
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample output</span>
 <span class="n">Here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">function</span><span class="o">.</span>
-<span class="k">def</span> <span class="nf">priority_v2</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">priority_v2</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
     <span class="o">...</span>
 </pre></div>
 </div>
@@ -505,7 +505,7 @@ document.write(`
 <li><dl>
 <dt><strong>Example</strong>:</dt><dd><p>Input:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">optimized</span> <span class="n">function</span> <span class="o">...</span>
-<span class="k">def</span> <span class="nf">priority_v2</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">...</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">priority_v2</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">...</span><span class="p">:</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span>
 </pre></div>
@@ -600,7 +600,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-definitions">Class Definitions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Sampler"><code class="docutils literal notranslate"><span class="pre">Sampler</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#LLM"><code class="docutils literal notranslate"><span class="pre">LLM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#SamplerTrimmer"><code class="docutils literal notranslate"><span class="pre">SamplerTrimmer</span></code></a></li>
 </ul>
 </li>

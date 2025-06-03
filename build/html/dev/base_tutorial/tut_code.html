@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -47,7 +47,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'dev/base_tutorial/tut_code';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Evaluator and SecureEvaluator" href="tut_evaluate.html" />
+    <link rel="next" title="Evaluation and SecureEvaluator" href="tut_evaluate.html" />
     <link rel="prev" title="Base package tutorial" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -185,9 +185,9 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Base package tutorial</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Function, Program, Converter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tut_evaluate.html">Evaluator and SecureEvaluator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut_evaluate.html">Evaluation and SecureEvaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tut_modify_code.html">ModifyCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tut_sample.html">Sampler and SamplerTrimmer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut_sample.html">LLM and SampleTrimmer</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../run_new_task.html">Run your algorithm design task</a></li>
@@ -455,43 +455,43 @@ document.write(`
 <h2>Tutorials<a class="headerlink" href="#Tutorials" title="Link to this heading">#</a></h2>
 <p>Below are examples on how to use these classes.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm4ad.base</span> <span class="kn">import</span> <span class="n">TextFunctionProgramConverter</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>from llm4ad.base import TextFunctionProgramConverter
 </pre></div>
 </div>
 </div>
 <p>This is a program in str type.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">example_program_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
-<span class="s1">import numpy as np</span>
-<span class="s1">from typing import List</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>example_program_str = &#39;&#39;&#39;\
+import numpy as np
+from typing import List
 
-<span class="s1">def example_function(arr: List | np.ndarray):</span>
-<span class="s1">    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;</span>
-<span class="s1">    max = np.max(arr)</span>
-<span class="s1">    min = np.min(arr)</span>
-<span class="s1">    result = max + min</span>
-<span class="s1">    return result</span>
-<span class="s1">&#39;&#39;&#39;</span>
+def example_function(arr: List | np.ndarray):
+    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;
+    max = np.max(arr)
+    min = np.min(arr)
+    result = max + min
+    return result
+&#39;&#39;&#39;
 </pre></div>
 </div>
 </div>
 <p>The str program can be converted to a <em>Program</em> instance.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">example_program</span> <span class="o">=</span> <span class="n">TextFunctionProgramConverter</span><span class="o">.</span><span class="n">text_to_program</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">example_program</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------------------------&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">example_program</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------------------------&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">example_program</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>example_program = TextFunctionProgramConverter.text_to_program(example_program_str)
+print(type(example_program))
+print(&#39;---------------------------------&#39;)
+print(str(example_program))
+print(&#39;---------------------------------&#39;)
+print(example_program.functions[0])
 </pre></div>
 </div>
 </div>
@@ -500,7 +500,7 @@ document.write(`
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;class &#39;alevo.base.code.Program&#39;&gt;
+&lt;class &#39;llm4ad.base.code.Program&#39;&gt;
 ---------------------------------
 import numpy as np
 from typing import List
@@ -526,17 +526,17 @@ def example_function(arr: List | np.ndarray):
 </div>
 <p>The function in the str program can be extracted into a <em>Function</em> instance. Please note that the function is not executable, as it lacks package import statements.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">example_function</span> <span class="o">=</span> <span class="n">TextFunctionProgramConverter</span><span class="o">.</span><span class="n">text_to_function</span><span class="p">(</span><span class="n">example_program_str</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">example_function</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">example_function</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[function name] </span><span class="se">\n</span><span class="si">{</span><span class="n">example_function</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[function docstring] </span><span class="se">\n</span><span class="si">{</span><span class="n">example_function</span><span class="o">.</span><span class="n">docstring</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[function body] </span><span class="se">\n</span><span class="si">{</span><span class="n">example_function</span><span class="o">.</span><span class="n">body</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>example_function = TextFunctionProgramConverter.text_to_function(example_program_str)
+print(type(example_function))
+print()
+print(str(example_function))
+print()
+print(f&#39;[function name] \n{example_function.name}\n&#39;)
+print(f&#39;[function docstring] \n{example_function.docstring}\n&#39;)
+print(f&#39;[function body] \n{example_function.body}\n&#39;)
 </pre></div>
 </div>
 </div>
@@ -545,7 +545,7 @@ def example_function(arr: List | np.ndarray):
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;class &#39;alevo.base.code.Function&#39;&gt;
+&lt;class &#39;llm4ad.base.code.Function&#39;&gt;
 
 def example_function(arr: List | np.ndarray):
     &#34;&#34;&#34;This is an example function.&#34;&#34;&#34;
@@ -572,20 +572,20 @@ This is an example function.
 </div>
 <p>You can convert a function (in str or Function instance) to a Program instance just by providing a template program. As shown below, the name of the function is modified to that in the template program, the package import statements are added, but the function body are preserved.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">def ha_ha_ha_ha(arr: List | np.ndarray):</span>
-<span class="s1">    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;</span>
-<span class="s1">    max = np.max(arr)</span>
-<span class="s1">    min = np.min(arr)</span>
-<span class="s1">    result = max + min</span>
-<span class="s1">    return result</span>
-<span class="s1">&#39;&#39;&#39;</span>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span>func = &#39;&#39;&#39;
+def ha_ha_ha_ha(arr: List | np.ndarray):
+    &quot;&quot;&quot;This is an example function.&quot;&quot;&quot;
+    max = np.max(arr)
+    min = np.min(arr)
+    result = max + min
+    return result
+&#39;&#39;&#39;
 
-<span class="n">program</span> <span class="o">=</span> <span class="n">TextFunctionProgramConverter</span><span class="o">.</span><span class="n">function_to_program</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">example_program</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">program</span><span class="p">))</span>
+program = TextFunctionProgramConverter.function_to_program(func, example_program)
+print(str(program))
 </pre></div>
 </div>
 </div>
@@ -643,7 +643,7 @@ def example_function(arr: List | np.ndarray):
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Evaluator and SecureEvaluator</p>
+        <p class="prev-next-title">Evaluation and SecureEvaluator</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
