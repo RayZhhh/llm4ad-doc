@@ -28,18 +28,18 @@ Class Definitions
     - **draw_samples(self, prompts: List[str | Any], *args, **kwargs) -> List[str]**:
         Returns multiple predicted continuations based on a list of prompts by calling `draw_sample` for each one.
 
-.. class:: SamplerTrimmer
+.. class:: SampleTrimmer
 
-    A utility class that wraps around a `Sampler` instance, providing functionality to trim unnecessary preamble content from generated code.
+    A utility class that wraps around a `LLM` instance, providing functionality to trim unnecessary preamble content from generated code.
 
     Constructor Parameters
     -----------------------
-    - **sampler** (Sampler): An instance of the `Sampler` class that will be used for generating code samples.
+    - **llm** (LLM): An instance of the `LLM` class that will be used for generating code samples.
 
     Methods
     -------
     - **draw_sample(self, prompt: str | Any, *args, **kwargs) -> str**:
-        Calls the `Sampler` instance's `draw_sample` method and trims the generated code if `do_auto_trim` is enabled.
+        Calls the `LLM` instance's `draw_sample` method and trims the generated code if `do_auto_trim` is enabled.
 
     - **draw_samples(self, prompts: List[str | Any], *args, **kwargs) -> List[str]**:
         Similar to `draw_sample`, but for a list of prompts, returning trimmed samples.
