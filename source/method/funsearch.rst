@@ -1,12 +1,12 @@
 FunSearch
 ===============
 
-The `FunSearch` class implements a function search algorithm to optimize a given program using sampling and evaluation.
+The `FunSearch` class implements an evolutionary function search algorithm that optimizes a given program through iterative sampling and evaluation using Large Language Models (LLMs). This class manages the complete optimization pipeline including prompt generation, parallel sampling, evaluation, and database registration.
 
 Usage
 -----
 
-To use the `FunSearch` class, initialize it with the required parameters and call the `run` method to start the optimization process.
+To use `FunSearch`, initialize it with the required components (LLM interface, evaluator, etc.) and call the `run()` method to start the optimization process. The algorithm will automatically handle parallel sampling and evaluation.
 
 Constructor
 -----------
@@ -15,20 +15,20 @@ Constructor
 
     .. rubric:: Parameters
 
-    - **llm** (LLM): An instance of `alevo.base.Sampler` for querying the LLM.
-    - **evaluation** (Evaluation): An instance of `alevo.base.Evaluator` to calculate the score of the generated function.
-    - **profiler** (FunSearchProfiler, optional): An instance of `alevo.method.funsearch.FunSearchProfiler`. Pass `None` if profiling is not needed.
-    - **config** (ProgramsDatabaseConfig, optional): An instance of `alevo.method.funsearch.config.ProgramDatabaseConfig`. Defaults to a new instance.
-    - **max_sample_nums** (int, optional): Maximum number of functions to evaluate. Defaults to 20.
-    - **resume_mode** (bool, optional): If set to `True`, skips the initial evaluation of the template program. Defaults to `False`.
-    - **debug_mode** (bool, optional): If set to `True`, detailed information will be printed. Defaults to `False`.
-    - **multi_thread_or_process_eval** (str): Use 'thread' or 'process' for evaluation. Defaults to 'thread'.
-    - **samples_per_prompt** (int, optional): Number of samples to generate per prompt. Defaults to 4.
-    - **valid_only** (bool, optional): If set to `True`, only valid functions are registered. Defaults to `False`.
-    - **kwargs**: Additional arguments passed to `alevo.base.SecureEvaluator`.
+    - **llm** (LLM): An instance of `llm4ad.base.LLM` for querying the LLM.
+    - **evaluation** (Evaluation): An instance of `llm4ad.base.Evaluation` defining how to score generated functions.
+    - **profiler** (ProfilerBase, optional): Profiling instance. Pass `None` to disable profiling.
+    - **num_samplers** (int): Number of parallel samplers. Defaults to 4.
+    - **num_evaluators** (int): Number of parallel evaluators. Defaults to 4.
+    - **samples_per_prompt** (int): Samples generated per prompt. Defaults to 4.
+    - **max_sample_nums** (int, optional): Maximum functions to evaluate. Defaults to 20.
+    - **resume_mode** (bool): Skip initial template evaluation if True. Defaults to False.
+    - **debug_mode** (bool): Enable detailed debug output if True. Defaults to False.
+    - **multi_thread_or_process_eval** (str): Use 'thread' or 'process' for parallel evaluation. Defaults to 'thread'.
+    - **kwargs**: Additional arguments for `SecureEvaluator`.
 
 .. important::
-    **template_program** The template program in must be a valid algorithm (obtain a valid score during evaluation).
+    The template program (provided via the `evaluation` parameter) must be a fully executable function that returns a valid score during initial evaluation.
 
 
 Methods
@@ -48,21 +48,17 @@ Private Methods
 Attributes
 ----------
 
-- **_template_program_str** (str): The string representation of the template program.
-- **_max_sample_nums** (int | None): The maximum number of samples to evaluate.
-- **_debug_mode** (bool): Indicates if debug mode is enabled.
-- **_resume_mode** (bool): Indicates if resume mode is enabled.
-- **_function_to_evolve** (Function): The function that will be evolved.
-- **_database** (ProgramsDatabase): The database for managing program instances.
-- **_sampler** (Sampler): The sampler instance used for sampling.
-- **_evaluator** (Evaluator): The evaluator instance used for evaluation.
-- **_profiler** (FunSearchProfiler): The profiler instance, if used.
-- **_samples_per_prompt** (int): Number of samples to generate per prompt.
-- **_tot_sample_nums** (int): Total number of samples evaluated.
-- **_evaluation_executor** (concurrent.futures.Executor): The executor for parallel evaluation.
-- **_sampler_threads** (List[Thread]): The list of threads used for sampling.
+- **_template_program_str**: Original template program string
+- **_function_to_evolve**: Function object being optimized
+- **_database**: ProgramsDatabase instance storing candidates
+- **_sampler**: SampleTrimmer for LLM interactions
+- **_evaluator**: SecureEvaluator for scoring functions
+- **_profiler**: Performance tracking instance
+- **_evaluation_executor**: Thread/Process pool for parallel eval
+- **_sampler_threads**: List of active sampling threads
+- **_tot_sample_nums**: Total samples evaluated so far
 
 Exceptions
 ----------
 
-- **RuntimeError**: Raised if the score of the template function is `None`.
+- **RuntimeError**: Raised if template program evaluation fails (score is None)
