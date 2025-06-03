@@ -15,38 +15,16 @@ Constructor
 
     .. rubric:: Parameters
 
-    - **task_description** (str): A brief description of the algorithm design task.
-    - **template_program** (str | Program): The seed program as the initial function. Should be executable and can include a 'pass' statement.
-    - **sampler** (Sampler): An instance of `alevo.base.Sampler` for querying the LLM.
-    - **evaluator** (Evaluator): An instance of `alevo.base.Evaluator` to calculate the score of generated functions.
+    - **llm** (LLM): An instance of `alevo.base.Sampler` for querying the LLM.
+    - **evaluation** (Evaluation): An instance of `alevo.base.Evaluator` to calculate the score of generated functions.
     - **profiler** (EoHProfiler, optional): An instance of `alevo.method.eoh.EoHProfiler`. Pass `None` if profiling is not needed.
-    - **config** (EoHConfig, optional): An instance of `alevo.method.eoh.config.EoHConfig`.
     - **max_generations** (int | None, optional): Maximum number of generations to evolve. Defaults to 10.
     - **max_sample_nums** (int | None, optional): Maximum number of samples to evaluate. Defaults to `None`.
     - **resume_mode** (bool, optional): If set to `True`, skips the initial evaluation of the template program. Defaults to `False`.
     - **initial_sample_num** (int | None, optional): Initial count of samples evaluated. Defaults to `None`.
     - **debug_mode** (bool, optional): If set to `True`, detailed information will be printed. Defaults to `False`.
     - **multi_thread_or_process_eval** (str, optional): Use 'thread' or 'process' for evaluation. Defaults to 'thread'.
-    - **valid_only** (bool, optional): If set to `True`, only valid functions are registered. Defaults to `False`.
     - **kwargs**: Additional arguments passed to `alevo.base.SecureEvaluator`.
-
-.. note::
-    **task_description** An empty task description is also supported in EoH. You can pass a empty string: '' to this parameter. You may also include this information in the doc-string of the template program.
-
-.. note::
-    **template_program** Different from other methods, the template program in EoH need not to be valid (obtain a valid score during evaluation). You can simply give a "pass" statement under the function signature.
-
-    .. code-block:: python
-
-        def your_algo(arg1: int, arg2: float) -> float:
-            """Description about this function.
-            Args:
-                arg1: xxx.
-                arg2: xxx.
-            Returns:
-                xxx.
-            """
-            pass
 
 
 Methods

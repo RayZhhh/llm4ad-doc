@@ -1,12 +1,12 @@
 base.evaluate
 ====================
 
-This module provides two main classes: `Evaluator` and `SecureEvaluator`. These classes enable the secure and configurable evaluation of generated code, incorporating optional optimizations and safety features like timeout handling and protected division.
+This module provides two main classes: `Evaluation` and `SecureEvaluator`. These classes enable the secure and configurable evaluation of generated code, incorporating optional optimizations and safety features like timeout handling and protected division.
 
 Class Definitions
 -----------------
 
-.. class:: Evaluator
+.. class:: Evaluation
 
     An abstract base class for evaluating Python code with customizable options to handle division safety, random seed setting, and code execution.
 

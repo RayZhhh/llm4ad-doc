@@ -15,9 +15,8 @@ Constructor
 
     .. rubric:: Parameters
 
-    - **template_program** (str): The seed program as the initial function of the run. The program should be executable and include necessary imports and definitions.
-    - **sampler** (Sampler): An instance of `alevo.base.Sampler` for querying the LLM.
-    - **evaluator** (Evaluator): An instance of `alevo.base.Evaluator` to calculate the score of the generated function.
+    - **llm** (LLM): An instance of `alevo.base.Sampler` for querying the LLM.
+    - **evaluation** (Evaluation): An instance of `alevo.base.Evaluator` to calculate the score of the generated function.
     - **profiler** (FunSearchProfiler, optional): An instance of `alevo.method.funsearch.FunSearchProfiler`. Pass `None` if profiling is not needed.
     - **config** (ProgramsDatabaseConfig, optional): An instance of `alevo.method.funsearch.config.ProgramDatabaseConfig`. Defaults to a new instance.
     - **max_sample_nums** (int, optional): Maximum number of functions to evaluate. Defaults to 20.
