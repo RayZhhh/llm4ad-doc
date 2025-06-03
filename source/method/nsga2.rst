@@ -16,7 +16,7 @@ Constructor
     .. rubric:: Parameters
 
     - **llm** (LLM): An instance of `llm4ad.base.LLM` for querying the LLM.
-    - **evaluation** (Evaluation): An instance of `llm4ad.base.Evaluator` to calculate scores of generated functions.
+    - **evaluation** (Evaluation): An instance of `llm4ad.base.Evaluation` to calculate scores of generated functions.
     - **profiler** (NSGA2Profiler, optional): An instance of `llm4ad.method.nsga2.NSGA2Profiler`. Pass `None` if profiling is not needed.
     - **max_generations** (int, optional): Maximum number of generations to evolve. Defaults to 10.
     - **max_sample_nums** (int, optional): Maximum number of functions to evaluate. Defaults to 100.

@@ -16,7 +16,7 @@ Constructor
     .. rubric:: Parameters  
 
     - **llm** (LLM): An instance of `llm4ad.base.LLM`, providing the interface to query the LLM.  
-    - **evaluation** (Evaluation): An instance of `llm4ad.base.Evaluator`, defining how to score generated functions.  
+    - **evaluation** (Evaluation): An instance of `llm4ad.base.Evaluation`, defining how to score generated functions.
     - **profiler** (MEoHProfiler, optional): An instance of `llm4ad.method.meoh.MEoHProfiler`. Pass `None` if profiling is not needed.  
     - **max_generations** (int | None): Terminate after evolving `max_generations` generations or reaching `max_sample_nums`. Defaults to 10.  
     - **max_sample_nums** (int | None): Terminate after evaluating `max_sample_nums` functions (valid or invalid) or reaching `max_generations`. Defaults to 100.  

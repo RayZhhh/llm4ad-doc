@@ -17,7 +17,7 @@ Constructor
 
 
     - **llm** (llm4ad.base.LLM): An instance of 'llm4ad.base.LLM', which provides the way to query LLM.  
-    - **evaluation** (llm4ad.base.Evaluator): An instance of 'llm4ad.base.Evaluator', which defines the way to calculate the score of a generated function.  
+    - **evaluation** (llm4ad.base.Evaluation): An instance of 'llm4ad.base.Evaluation', which defines the way to calculate the score of a generated function.
     - **profiler** (llm4ad.method.eoh.EoHProfiler | None): An instance of 'llm4ad.method.eoh.EoHProfiler'. If not needed, pass 'None'.  
     - **max_generations** (int | None): Terminate after evolving 'max_generations' generations or reaching 'max_sample_nums'. Pass 'None' to disable.  
     - **max_sample_nums** (int | None): Terminate after evaluating 'max_sample_nums' functions (valid or not) or reaching 'max_generations'. Pass 'None' to disable.  
@@ -29,7 +29,7 @@ Constructor
     - **resume_mode** (bool): In resume_mode, 'randsample' skips evaluating 'template_program' and initialization.  
     - **debug_mode** (bool): If True, detailed information will be printed.  
     - **multi_thread_or_process_eval** (str): Use 'thread' (ThreadPoolExecutor) or 'process' (ProcessPoolExecutor) for multi-core CPU evaluation. Default is 'thread'. Note: If 'safe_evaluate=False' and this is 'thread', multi-core CPU won't be utilized.  
-    - **kwargs** (dict): Additional args passed to 'llm4ad.base.SecureEvaluator', such as 'fork_proc'.  
+    - **kwargs** (dict): Additional args passed to 'llm4ad.base.SecureEvaluation', such as 'fork_proc'.
 
 
     .. code-block:: python

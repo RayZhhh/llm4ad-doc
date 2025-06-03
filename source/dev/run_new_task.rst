@@ -11,7 +11,7 @@ This tutorial will demonstrate a basic LLM4AD pipeline to solve an automated alg
     :width: 100%
 
 
-1. Prepare a `Sampler`
+1. Prepare a `LLM`
 -----------------------
 
 .. tip::
@@ -22,11 +22,11 @@ Prepare an 'api_key' and specify the LLM model to be used. Please note that the 
 .. code:: python
 
     import llm4ad
-    from llm4ad.tools.llm.llm_api_openai import OpenAI
+    from llm4ad.tools.llm.llm_api_openai import OpenAIAPI
 
-    sampler = OpenAI(
+    llm = OpenAIAPI(
         base_url='a.b.c',
-        api_key='sk-abcwldfjlwhf23rwiduf2ienfeijo23f0isdhfnkwn',
+        api_key='sk-yourapikeyhere',
         model='gpt-4o',
         timeout=30
     )
@@ -110,7 +110,7 @@ LLM4AD has also encapsulated varying Evaluation instances for different tasks.
 .. code:: python
 
     import llm4ad
-    evaluator = llm4ad.task.optimization.online_bin_packing.OBPEvaluator()
+    evaluation = llm4ad.task.optimization.online_bin_packing.OBPEvaluation()
 
 4. Specify a profiler and a logger (if necessary)
 -------------------------------------------------
@@ -145,11 +145,11 @@ Pass above argument to EoH and run.
     from llm4ad.method.eoh import EoH
 
     eoh = EoH(
-        template_program=template,
-        sampler=sampler,
+        llm=llm,
         profiler=profiler,
-        evaluator=evaluator,
+        evaluation=evaluation,
         max_sample_nums=1000,
+        max_generations=None,
         num_samplers=4,
         num_evaluators=4
     )
