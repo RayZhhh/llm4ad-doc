@@ -31,8 +31,8 @@ Locally build the package
 .. code-block:: console
 
     $ git clone https://github.com/Optima-CityU/LLM4AD
-    $ cd llm4ad
-    $ pip install -e .
+    $ cd LLM4AD
+    $ pip install .
 
 PyPI installation
 ~~~~~~~~~~~~~~~~~
