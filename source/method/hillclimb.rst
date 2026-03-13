@@ -112,7 +112,7 @@ Complete Example
 
     from llm4ad.base import LLM, Evaluation
     from llm4ad.method import HillClimb
-    from llm4ad.tool import HillClimbProfiler
+    from llm4ad.method.hillclimb import HillClimbProfiler
 
     # Define your task
     task_description = '''

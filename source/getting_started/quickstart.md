@@ -113,11 +113,12 @@ To use a real LLM instead of the fake one, replace ``FakeLLM`` with an actual LL
 
 .. code-block:: python
 
-    from llm4ad.tool import OnlineAPI
+    from llm4ad.tools.llm.llm_api_https import HttpsApi
 
-    llm = OnlineAPI(
-        api_endpoint='your-api-endpoint',  # e.g., "api.bltcy.top" (no https://)
-        api_key='your-api-key',            # e.g., "sk-..."
+    llm = HttpsApi(
+        host='your-api-endpoint',  # e.g., "api.bltcy.top" (no https://)
+        key='your-api-key',        # e.g., "sk-..."
+        model='gpt-4o'             # your model name
     )
 
 Using Different Methods
@@ -185,13 +186,13 @@ LLM4AD provides pre-built tasks for common optimization problems:
 
     task = CVRPEvaluation()
 
-**Circle Packing**:
+**Knapsack Problem**:
 
 .. code-block:: python
 
-    from llm4ad.task.optimization.circle_packing import CirclePackingEvaluation
+    from llm4ad.task.optimization.knapsack_construct import KnapsackEvaluation
 
-    task = CirclePackingEvaluation()
+    task = KnapsackEvaluation()
 
 Next Steps
 ----------

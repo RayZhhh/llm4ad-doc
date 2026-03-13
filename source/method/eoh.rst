@@ -145,7 +145,7 @@ Complete Example
 
     from llm4ad.base import LLM, Evaluation
     from llm4ad.method import EoH
-    from llm4ad.tool import EoHProfiler
+    from llm4ad.method.eoh import EoHProfiler
 
     # Define your task
     task_description = '''

@@ -127,7 +127,7 @@ Complete Example
 
     from llm4ad.base import LLM, Evaluation
     from llm4ad.method import FunSearch
-    from llm4ad.tool import FunSearchProfiler
+    from llm4ad.method.funsearch import FunSearchProfiler
 
     # Define your task
     task_description = '''

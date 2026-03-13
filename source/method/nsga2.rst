@@ -231,7 +231,7 @@ Example
 
     from llm4ad.method import NSGA2
     from llm4ad.base import LLM, Evaluation
-    from llm4ad.tool import Profiler
+    from llm4ad.method.nsga2 import NSGA2Profiler
 
     # Define task
     task_description = "Design a heuristic for the vehicle routing problem that minimizes total distance and number of vehicles."

@@ -201,7 +201,7 @@ Example
 
     from llm4ad.method import MOEAD
     from llm4ad.base import LLM, Evaluation
-    from llm4ad.tool import Profiler
+    from llm4ad.method.moead import MOEADProfiler
 
     # Define task
     task_description = "Design a heuristic for the bin packing problem that minimizes the number of bins used."

@@ -172,7 +172,7 @@ Example
 
     from llm4ad.method import RandSample
     from llm4ad.base import LLM, Evaluation
-    from llm4ad.tool import Profiler
+    from llm4ad.tools.profiler import ProfilerBase
 
     # Define task
     task_description = "Design a heuristic for the traveling salesman problem that minimizes total travel distance."

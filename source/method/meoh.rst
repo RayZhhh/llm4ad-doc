@@ -149,7 +149,7 @@ Complete Example
 
     from llm4ad.base import LLM, Evaluation
     from llm4ad.method import MEoH
-    from llm4ad.tool import MEoHProfiler
+    from llm4ad.method.meoh import MEoHProfiler
 
     # Define your task with multiple objectives
     task_description = '''
