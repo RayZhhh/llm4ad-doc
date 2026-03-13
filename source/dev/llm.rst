@@ -1,8 +1,8 @@
 Specifying your LLM sampler
 ============================
 
-Use 'https' requests your LLM
---------------------------------
+Use 'https' to request your LLM
+---------------------------------
 
 .. note::
     The `LLM` class (an abstract class) defines how to access the LLM.
@@ -79,7 +79,7 @@ As we have tested diverse existing open-source LLMs, and they work well in our p
 
 .. important::
     Please be noted that not all LLMs can follow our prompt well.
-    In addition, the the behaviors of different LLMs may be inconsistent.
+    In addition, the behaviors of different LLMs may be inconsistent.
     An brief example of different behaviors of LLM is shown below:
 
     - Prompt content:
@@ -119,7 +119,7 @@ As we have tested diverse existing open-source LLMs, and they work well in our p
     However, we cannot get the newest version in example 2.
 
 
-Here we show a brief way to tackling situation in example 2, the code is shown below.
+Here we show a brief way to tackle the situation in example 2, the code is shown below.
 In this code, we find the last function in the generated content as our target function.
 
 .. code:: python

@@ -4,7 +4,7 @@ Installation
 Python version requirements
 ---------------------------
 .. important::
-    Your Python version should >= Python 3.9 to ensure `ast.unparse()` function.
+    Your Python version should be >= Python 3.9 to ensure `ast.unparse()` function.
 
 We provide three ways to install our package.
 
@@ -17,7 +17,7 @@ Run this project without installing the package
     $ pip install torch  # if using tensorboard profiler
     $ pip install tensorboard # if using tensorboard profiler
     $ pip install wandb  # if using W&B profiler
-    $ pip install numba  # if using number to for acceleration
+    $ pip install numba  # if using number for acceleration
 
 Or simply install packages from requirements.txt
 

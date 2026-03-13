@@ -3,7 +3,7 @@ Run your algorithm design task
 
 
 
-This tutorial will demonstrate a basic LLM4AD pipeline to solve an automated algorithm design task. The pipline is demonstrated in the following figure.
+This tutorial will demonstrate a basic LLM4AD pipeline to solve an automated algorithm design task. The pipeline is demonstrated in the following figure.
 
 .. figure:: ../assets/figs/pipeline.png
     :alt: pipeline
@@ -135,7 +135,7 @@ The profiler and logger will log your experiment locally/online for the convenie
 Pass above argument to EoH and run.
 
 .. note::
-    The `num_samplers` refers to the number of threads in that may access to the LLM simultaneously. The `num_evaluators` refers to the size of process execute pool, indicating the maximum processes used during evaluation (we may evaluate multiple algorithms in the same time).
+    The `num_samplers` refers to the number of threads that may access the LLM simultaneously. The `num_evaluators` refers to the size of process execute pool, indicating the maximum processes used during evaluation (we may evaluate multiple algorithms at the same time).
 
 .. caution::
     We use multi-threading for sampler, and multi-processing for evaluator. This means that we are using multi-core CPU during evaluation. Please kindly set these parameters to ensure safety.

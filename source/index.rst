@@ -17,7 +17,7 @@ aimed at assisting researchers and related users in this field to conduct experi
 - **Nov 5th, 2024:** LLM4AD 1.0.0 is released.
 
 
-🚀Comming soon
+🚀Coming soon
 ---------------
 - Other programming languages support.
 
@@ -28,9 +28,9 @@ aimed at assisting researchers and related users in this field to conduct experi
 - Evaluation acceleration: multiprocessing evaluation, add numba wrapper for algorithms.
 - Secure evaluation: main process protection, timeout interruption.
 - Log and profiling: Wandb and Tensorboard support.
-- Resume run supported.
+- Resume runs are supported.
 - LLM4AD provides package for code modification and secure evaluation for future development.
-- LLM4AD is with GUI support.
+- LLM4AD provides GUI support.
 
 
 📦Supported methods
@@ -70,7 +70,7 @@ LLM4AD provides various example tasks including machine learning, optimization, 
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | Domain                                                | Tasks                                                                                                                    |
 +=======================================================+==========================================================================================================================+
-| Machine learning                                      | Acrobot, Cart Pole, Mountain Var                                                                                         |
+| Machine learning                                      | Acrobot, Cart Pole, Mountain Car                                                                                         |
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | Optimization                                          | CVRP, OVRP, TSP, VRPTW                                                                                                   |
 +-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
@@ -83,7 +83,7 @@ LLM4AD provides various example tasks including machine learning, optimization, 
 
 This platform is developed and maintained by LLM4AD developer group from the City University of Hong Kong (CityUHK) and the Southern University of Science and Technology (SUSTech). We develop LLM4AD platform for research purposes and hope to contribute to the research area by delivering tools for LLM-based algorithm design methods.
 
-- **Contribution:** We are more than welcome to contribute including developing code and ideas to improve our platform. We are appriciated if you could give us a 🌟 on `GitHub <https://github.com/Optima-CityU/llm4ad>`_.
+- **Contribution:** We are more than welcome to contribute including developing code and ideas to improve our platform. We are appreciated if you could give us a 🌟 on `GitHub <https://github.com/Optima-CityU/LLM4AD>`_.
 
 - **Collaborations:** If you like our platform, and you would like to use it for profit-making purposes? We are always searching for industrial collaborations because they help direct research to meet the industry’s needs.
 

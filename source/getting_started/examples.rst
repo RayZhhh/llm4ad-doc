@@ -9,7 +9,7 @@ Run examples
 
 **Step 2**, make sure you have installed all requirements (Please refer to :doc:`installation`).
 
-**Step 3**, find the corresponded python script and execute the script.
+**Step 3**, find the corresponding python script and execute the script.
 The script started with the word "fake" refers to LLM-free examples, as the Sampler randomly select a function from the database to imitate a sampling process.
 If you have prepared an LLM API, Please goto **Step 4** and **Step 5**.
 

@@ -48,13 +48,13 @@ $ cd GUI
 $ python run_gui.py
 ```
 
-**Step 3**, set the parameter of the large language model.
+**Step 3**, set the parameters of the large language model.
 
 - host, the ip of your API provider, no "https://", such as "api.bltcy.top".
 - key, your API key which may start with "sk-......".
 - model, the name of the large language model.
 
-**Step 4**, select the **Method** to design the algorithm and set the parameter of the selected method.
+**Step 4**, select the **Method** to design the algorithm and set the parameters of the selected method.
 
 **Step 5**, select which task you want to design an algorithm for. All tasks are divided into three types: `machine_learning`, `optimization`, and `science_discovery`. You can select the problem type in the Combobox.
 
